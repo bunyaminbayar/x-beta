@@ -2,6 +2,18 @@
   font-family: 'IBM Plex Sans', sans-serif !important;
 }
 
+body {
+  margin: 0;
+}
+
 .MuiInputBase-root {
   border-radius: 0 !important;
+}
+
+.css-c5v1qu-MuiInputBase-input-MuiFilledInput-input {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 14px;
+  line-height: 18px;
+  height: 18px;
 }
