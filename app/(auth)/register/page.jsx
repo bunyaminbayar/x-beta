@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import * as React from 'react';
+//import Button from '@material-ui/core/Button';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
@@ -11,6 +12,9 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { InputAdornment, IconButton } from "@material-ui/core";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
+
 
 function Register() {
 
@@ -18,6 +22,19 @@ function Register() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
+  // Show or hide password with TextField icons
+  const [showPassword, setShowPassword] = useState(false);
+
+  //
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  // states
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   // validations Message
@@ -70,7 +87,7 @@ function Register() {
 
   return (
     <>
-      <Box display="flex" height="100vh" justifyContent="center" alignItems="center">
+      <Box display="flex" height="100%" justifyContent="center" alignItems="center">
         <Box padding={isSmallScreen ? '20px' : '0px'}
           sx={{
             display: 'flex',
@@ -117,7 +134,19 @@ function Register() {
                 fullWidth
                 name="password"
                 placeholder="Password"
-                type="password"
+                type={showPassword ? "text" : "password"}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
                 id="password"
                 margin="dense"
                 size="small"
@@ -135,7 +164,7 @@ function Register() {
                     size="large"
                     variant="contained"
                     fontWeight="medium"
-                    sx={{ fontSize: '14px', lineHeight: '16px', pt: 2, pr: 8, pb: 2, pl: 2, mt: 2, mb: 2, borderRadius: 0, textTransform: 'inherit', background: '#0F62FE' }}
+                    style={{ fontSize: '14px', lineHeight: '16px', paddingTop: '16px', paddingRight: '64px', paddingBottom: '16px', paddingLeft: '16px', marginTop: '16px', marginBottom: '16px', color: '#fff', borderRadius: 0, textTransform: 'inherit', background: '#0F62FE' }}
                   >
                     Register
                   </Button>

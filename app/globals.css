@@ -6,14 +6,22 @@ body {
   margin: 0;
 }
 
+.mainPage {
+  height: calc(100vh - 48px);
+}
+
 .MuiInputBase-root {
   border-radius: 0 !important;
 }
 
-.css-c5v1qu-MuiInputBase-input-MuiFilledInput-input {
+.css-c5v1qu-MuiInputBase-input-MuiFilledInput-input, .css-1u9li0h-MuiInputBase-input-MuiFilledInput-input, .createWorkspaceForm input, .css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input.css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input.css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input {
   padding-top: 15px;
   padding-bottom: 15px;
   font-size: 14px;
   line-height: 18px;
   height: 18px;
+}
+
+.css-1wc848c-MuiFormHelperText-root.Mui-error {
+  margin-left: 0;
 }
