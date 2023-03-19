@@ -59,11 +59,13 @@ body {
 .createWidgetTextArea .MuiFilledInput-root {
   padding: 16px;
   min-height: 100px;
+  height: inherit;
 }
 
 .createWidgetTextArea textarea {
   font-size: 14px;
   line-height: 20px;
+  height: inherit !important;
 }
 
 .addCtaSwitch .checked span {
@@ -95,3 +97,9 @@ body {
   width: 42px;
 }
 
+.widgetPositionInput .MuiSelect-select {
+  height: 18px;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 10px 16px 10px 16px;
+}

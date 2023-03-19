@@ -1,13 +1,9 @@
 "use client"; // this is a client componentimport React from 'react';
 import * as React from 'react';
+import { useState } from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/system';
 import useSwitch from '@mui/base/useSwitch';
-
-const grey = {
-    400: '#BFC7CF',
-    800: '#2F3A45',
-};
 
 const SwitchRoot = styled('span')`
   display: inline-block;
@@ -79,6 +75,7 @@ const SwitchTrack = styled('span')(
 );
 
 function MUISwitch(props) {
+
     const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
     const stateClasses = {
@@ -93,12 +90,9 @@ function MUISwitch(props) {
                 <SwitchTrack>
                     <SwitchThumb className={clsx(stateClasses)} />
                 </SwitchTrack>
-                <SwitchInput {...getInputProps()} aria-label="Demo switch" />
+                <SwitchInput {...getInputProps()} />
             </SwitchRoot>
         </diV>
     );
 }
-
-export default function UseSwitchesCustom() {
-    return <MUISwitch defaultChecked />;
-}
+export default MUISwitch;

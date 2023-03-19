@@ -41,9 +41,15 @@ function CreateWidget() {
     //
     const [widgetBody, setwidgetBody] = useState('');
     // 
-    const [icon, setIcon] = useState('demo');
+    const [icon, setIcon] = useState('');
+    // Switch add CTA
+    const [mySwitchState, setMySwitchState] = useState(false);
+    // Switch controller
+    const [mySwitchCont, setmySwitchCont] = useState(false);
+    // set Icon + text or only Icon
+    const [iconText, setIconText] = useState(false);
 
-    //
+    // enter widget name
     const handleChangeWidgetName = (event) => {
         if (event.target.value.length < 1) {
             setWidgetError('Please enter Widget Name');
@@ -88,6 +94,55 @@ function CreateWidget() {
             setCtaLink(event.target.value);
             setCtaLinkError('');
             setCtaLinkReady(true);
+        }
+    };
+
+    // Switch add CTA
+    const handleSwitchChange = () => {
+        if (mySwitchState === false) {
+            setMySwitchState(true);
+            // add for error
+            setCtaTextReady(true);
+            setCtaTextError('');
+            setCtaLinkReady(true);
+            setCtaLinkError('');
+            setwidgetPosition(null);
+            // swicth controller
+            if (mySwitchCont === false) {
+                setmySwitchCont(true);
+            }
+        } if (mySwitchState === true) {
+            setMySwitchState(false);
+            // add for error
+            setCtaTextReady(false);
+            setCtaTextError('');
+            setCtaLinkReady(false);
+            setCtaLinkError('');
+            // swicth controller
+            if (mySwitchCont === true) {
+                setmySwitchCont(false);
+            }
+        }
+    };
+
+    // Icon + Text or Icon Only funcs
+    const iconAndText = () => {
+        if (iconText === true) {
+            setIconText(false);
+
+            if (mySwitchCont === false) {
+                setMySwitchState(false);
+            }
+        }
+    };
+
+    const onlyIcon = () => {
+        if (iconText === false) {
+            setIconText(true);
+
+            if (mySwitchCont === false) {
+                setMySwitchState(true);
+            }
         }
     };
 
@@ -156,8 +211,8 @@ function CreateWidget() {
                                         placeholder='H-birthday-2023-promo'
                                     />
                                     <ButtonGroup variant="outlined" size="small" aria-label="small button group" sx={{ mt: 2, mb: 2 }}>
-                                        <Button sx={{ padding: '6px 32px 6px 16px', fontSize: '14px', lineHeight: '18px', borderColor: '#161616', color: '#161616', textTransform: 'inherit', '&:hover': { borderColor: '#161616', } }}>Icon + text</Button>
-                                        <Button sx={{ padding: '6px 32px 6px 16px', fontSize: '14px', lineHeight: '18px', borderColor: '#161616', color: '#161616', textTransform: 'inherit', '&:hover': { borderColor: '#161616', } }}>Icon only</Button>
+                                        <Button onClick={iconAndText} variant={iconText ? 'outlined' : 'contained'} sx={{ backgroundColor: iconText ? '' : '#161616', color: iconText ? '#161616' : '#fff', padding: '6px 32px 6px 16px', fontSize: '14px', lineHeight: '18px', borderColor: '#161616', textTransform: 'inherit', '&:hover': { borderColor: '#161616', backgroundColor: iconText ? '' : '#161616' } }}>Icon + text</Button>
+                                        <Button onClick={onlyIcon} variant={iconText ? 'contained' : 'outlined'} sx={{ backgroundColor: iconText ? '#161616' : '', color: iconText ? '#fff' : '#161616', padding: '6px 32px 6px 16px', fontSize: '14px', lineHeight: '18px', borderColor: '#161616', textTransform: 'inherit', '&:hover': { borderColor: '#161616', backgroundColor: iconText ? '#161616' : '' } }}>Icon only</Button>
                                     </ButtonGroup>
                                     <Box sx={{
                                         '--Grid-borderWidth': '1px',
@@ -181,13 +236,14 @@ function CreateWidget() {
                                                     select
                                                     fontSize='14px'
                                                     fullWidth
+                                                    defaultValue='menu'
                                                     variant="filled"
                                                     onChange={(event) => setIcon(event.target.value)}
                                                     SelectProps={{
                                                         IconComponent: ExpandMoreIcon,
                                                     }}
                                                 >
-                                                    <MenuItem key='0' value='1'>
+                                                    <MenuItem key='0' value='menu'>
                                                         menu
                                                     </MenuItem>
                                                 </TextField>
@@ -198,6 +254,7 @@ function CreateWidget() {
                                                 </Typography>
                                                 <TextField
                                                     className='widggetTitleError'
+                                                    disabled={iconText}
                                                     onChange={handleChangeWidgetTitle}
                                                     error={!!widgetTitleError}
                                                     helperText={widgetTitleError}
@@ -213,25 +270,28 @@ function CreateWidget() {
                                         </Typography>
                                         <TextField
                                             fullWidth
+                                            disabled={iconText}
                                             className='createWidgetTextArea'
                                             id="outlined-multiline-static"
                                             onChange={(event) => setwidgetBody(event.target.value)}
                                             multiline
                                             rows={3}
-                                            defaultValue="Default Value"
+                                            defaultValue="To make your birthday even more special, we are offering you a promotion as a gift."
                                             variant="filled"
+                                            sx={{ resize: 'both', overflowY: 'auto', overflowX: 'hidden', maxWidth: '100%' }}
                                         />
                                         <Typography color="#525252" fontSize="12px" lineHeight="16px" sx={{ mb: 1, mt: 2 }}>
                                             Add CTA button
                                         </Typography>
-                                        <MUISwitch />
-                                        <Grid container display="flex" alignItems="center" sx={{ mt: 2, alignItems: 'baseline'}}>
+                                        <MUISwitch onChange={handleSwitchChange} defaultChecked />
+                                        <Grid container display="flex" alignItems="center" sx={{ mt: 2, alignItems: 'baseline' }}>
                                             <Grid item xs={4} >
-                                                <Typography color="#525252" fontSize="12px" lineHeight="16px" sx={{ mb: 1 }}>
+                                                <Typography color={mySwitchState ? '#C6C6C6' : '#525252'} fontSize="12px" lineHeight="16px" sx={{ mb: 1 }}>
                                                     CTA Text
                                                 </Typography>
                                                 <TextField
                                                     className='ctaTextInput'
+                                                    disabled={mySwitchState}
                                                     onChange={handleChangeCtaText}
                                                     error={!!ctaTextError}
                                                     helperText={ctaTextError}
@@ -243,11 +303,12 @@ function CreateWidget() {
 
                                             </Grid>
                                             <Grid item xs={8} sx={{ pl: 2 }}>
-                                                <Typography color="#525252" fontSize="12px" lineHeight="16px" sx={{ mb: 1 }}>
+                                                <Typography color={mySwitchState ? '#C6C6C6' : '#525252'} fontSize="12px" lineHeight="16px" sx={{ mb: 1 }}>
                                                     CTA Text
                                                 </Typography>
                                                 <TextField
                                                     className='widggetTitleError'
+                                                    disabled={mySwitchState}
                                                     onChange={handleChangeCtaLink}
                                                     error={!!ctaLinkError}
                                                     helperText={ctaLinkError}
@@ -258,15 +319,18 @@ function CreateWidget() {
                                                 />
                                             </Grid>
                                         </Grid>
-                                        <Typography color="#525252" fontSize="12px" lineHeight="16px" sx={{ mb: 1, mt: '20px' }}>
+                                        <Typography color={mySwitchState ? '#C6C6C6' : '#525252'} fontSize="12px" lineHeight="16px" sx={{ mb: 1, mt: '20px' }}>
                                             Widget Position
                                         </Typography>
                                         <TextField
                                             id="filled-select-currency"
+                                            className='widgetPositionInput'
+                                            disabled={mySwitchState}
                                             select
                                             fullWidth
                                             defaultValue="top-center"
                                             variant="filled"
+                                            size='small'
                                             onChange={(event) => setwidgetPosition(event.target.value)}
                                             SelectProps={{
                                                 IconComponent: ExpandMoreIcon,
@@ -279,14 +343,14 @@ function CreateWidget() {
                                         </TextField>
                                     </Box>
                                     <Button
-                                            type="submit"
-                                            size="large"
-                                            variant="contained"
-                                            fontWeight="medium"
-                                            sx={{ fontSize: '14px', lineHeight: '16px', mt: 3, pt: 2, pr: 8, pb: 2, pl: 2, borderRadius: 0, textTransform: 'inherit', background: '#0F62FE' }}
-                                        >
-                                            Create widget
-                                        </Button>
+                                        type="submit"
+                                        size="large"
+                                        variant="contained"
+                                        fontWeight="medium"
+                                        sx={{ fontSize: '14px', lineHeight: '16px', mt: 3, pt: 2, pr: 8, pb: 2, pl: 2, borderRadius: 0, textTransform: 'inherit', background: '#0F62FE' }}
+                                    >
+                                        Create widget
+                                    </Button>
                                 </Box>
                             </Grid>
                             <Grid item xs={12} sm={6} paddingBottom={isSmallScreen ? '16px' : '0px'}>
