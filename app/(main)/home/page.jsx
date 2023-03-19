@@ -59,7 +59,7 @@ function Home() {
 
     return (
         <>
-            <Box padding={isSmallScreen ? '20px 25px 20px 25px' : '20px 56px 20px 56px'}>
+            <Box padding={isSmallScreen ? '20px 20px 20px 20px' : '20px 56px 20px 56px'}>
                 <Breadcrumbs maxItems={4} aria-label="breadcrumb" fontSize={'14px'} lineHeight={'18px'}>
                     <Link underline="hover" href="#" color={'#0F62FE'}>
                         ACME LTD
@@ -67,7 +67,7 @@ function Home() {
                     <Typography color="#161616">Home </Typography>
                 </Breadcrumbs>
             </Box>
-            <Box display="flex" height="calc(100% - 70px)" justifyContent="center" alignItems="center">
+            <Box display="flex" height="calc(100% - 70px)" justifyContent="center" alignItems="center" padding={isSmallScreen ? '0px 20px 0px 20px' : '0px 0px 0px 0px'}>
                 <Box width={'100%'} maxWidth='640px' color="#161616">
                     <Typography sx={{ mb: '40px' }} component="h1" variant="h5" fontWeight="medium" fontSize={isSmallScreen ? '20px' : '24px'} lineHeight={isSmallScreen ? '22px' : '18px'}>
                         Welcome to
@@ -100,7 +100,7 @@ function Home() {
                             <div className={classes.line}>{'</script>'}</div>
                         </Typography>
                         <Grid container display="flex" alignItems="center" mt={2} mb={1}>
-                            <Grid item xs={5}>
+                            <Grid item xs={12} sm={5} paddingBottom={isSmallScreen ? '16px' : '0px'}>
                                 <Button
                                     type="submit"
                                     size="large"
@@ -111,7 +111,7 @@ function Home() {
                                     Verify installation
                                 </Button>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={8} sm={4}>
                                 <Typography component="p" variant="p" fontWeight="400" fontSize={'14px'} lineHeight={'18px'}>
                                     Domains: mywebsite.com &nbsp;&nbsp;
                                     <span>
@@ -119,7 +119,7 @@ function Home() {
                                     </span>
                                 </Typography>
                             </Grid>
-                            <Grid item xs={3} textAlign="right">
+                            <Grid item xs={4} sm={3} textAlign="right">
                                 <Link href="#" sx={{ textDecoration: 'auto' }} fontSize="14px" lineHeight={'18px'} variant="body1">
                                     {"See docs ↗"}
                                 </Link>

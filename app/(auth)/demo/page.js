@@ -1,51 +1,51 @@
 "use client"; // this is a client componentimport React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import React, { useState } from 'react';
+import { ButtonGroup, Button, TextField } from '@mui/material';
 
-const useStyles = makeStyles(() => ({
-  code: {
-    whiteSpace: 'pre-line',
-    lineHeight: 1.5,
-    counterReset: 'linenumber',
-  },
-  line: {
-    counterIncrement: 'linenumber',
-    '&:before': {
-      content: 'counter(linenumber)',
-      marginRight: '10px',
-      color: '#999',
-      display: 'inline-block',
-      textAlign: 'right',
-      width: '40px',
-    },
-  },
-}));
+function Form() {
+  const [iconText, setIconText] = useState(false);
 
-export default function CodeBlock() {
-  const classes = useStyles();
+  const iconAdnText = () => {
+    if (iconText === true) {
+      setIconText(false);
+    }
+  };
 
-  const handleCopyClick = () => {
-    navigator.clipboard.writeText(`
-function sum(a, b) {
-  return a + b;
-}
-console.log(sum(1, 2)); // Output: 3
-    `);
+  const onlyIcon = () => {
+    if (iconText === false) {
+      setIconText(true);
+    }
   };
 
   return (
-    <>
-      <Typography variant="body1" component="pre" className={classes.code}>
-        <div className={classes.line}>function sum(a, b) {'{'} </div>
-        <div className={classes.line}>  return a + b;</div>
-        <div className={classes.line}>{'}'}</div>
-        <div className={classes.line}>console.log(sum(1, 2)); // Output: 3</div>
-      </Typography>
-      <Button variant="contained" color="primary" onClick={handleCopyClick}>
-        Copy Code
-      </Button>
-    </>
+    <div>
+      <ButtonGroup variant="outlined" aria-label="outlined button group">
+        <Button onClick={iconAdnText}>One</Button>
+        <Button onClick={onlyIcon}>Two</Button>
+      </ButtonGroup>
+      <TextField
+        id="outlined-basic"
+        label="Outlined"
+        variant="outlined"
+        defaultValue={iconText ? 'Disabled' : ''}
+        disabled={iconText}
+      />
+      <TextField
+        id="outlined-basic2"
+        label="Outlined"
+        variant="outlined"
+        defaultValue={iconText ? 'Disabled' : ''}
+        disabled={iconText}
+      />
+      <TextField
+        id="filled-basic"
+        label="Filled"
+        variant="filled"
+        defaultValue="Disabled"
+        disabled
+      />
+    </div>
   );
 }
+export default Form;

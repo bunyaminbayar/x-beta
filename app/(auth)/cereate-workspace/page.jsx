@@ -123,7 +123,6 @@ function CreateWorkplace() {
               </Typography>
               <TextField
                 onChange={handlechangeWorkName}
-                inputProps={{ pattern: '/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i*' }}
                 error={!!workNameError}
                 helperText={workNameError}
                 fullWidth
@@ -145,7 +144,7 @@ function CreateWorkplace() {
                 placeholder='e.g. https://productx.com'
               />
               <Typography color="#525252" fontSize="12px" lineHeight="16px" sx={{ mt: 4, mb: 1 }}>
-              How large is your company?
+                How large is your company?
               </Typography>
               <TextField
                 id="filled-select-currency"
@@ -165,7 +164,7 @@ function CreateWorkplace() {
                 ))}
               </TextField>
               <Typography color="#525252" fontSize="12px" lineHeight="16px" sx={{ mt: 4, mb: 1 }}>
-              What is your role?
+                What is your role?
               </Typography>
               <TextField
                 id="filled-select-currency"

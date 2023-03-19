@@ -7,7 +7,7 @@ body {
 }
 
 .mainPage {
-  height: calc(100vh - 48px);
+  min-height: calc(100vh - 48px);
 }
 
 .MuiInputBase-root {
@@ -20,6 +20,20 @@ body {
   font-size: 14px;
   line-height: 18px;
   height: 18px;
+}
+
+.createWidgetFrom input {
+  padding: 11px 16px;
+  font-size: 14px;
+  line-height: 20px;
+  height: 18px;
+}
+
+.iconInput .MuiSelect-filled {
+  height: 18px !important;
+  line-height: 18px !important;
+  padding-bottom: 10px !important;
+  padding-top: 10px !important;
 }
 
 .css-1wc848c-MuiFormHelperText-root.Mui-error {
@@ -41,3 +55,43 @@ body {
   height: 18px;
   margin-right: 14px;
 }
+
+.createWidgetTextArea .MuiFilledInput-root {
+  padding: 16px;
+  min-height: 100px;
+}
+
+.createWidgetTextArea textarea {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.addCtaSwitch .checked span {
+  background-color: #198038;
+  border-radius: 1rem;
+}
+
+.addCtaSwitch span {
+  background-color: #e74c3c;
+  border-radius: 1rem;
+  padding: 0;
+  height: 18px;
+}
+
+.addCtaSwitch .css-ruk3pj::before {
+  height: 16px;
+  width: 16px;
+  background-size: 90%;
+}
+
+.addCtaSwitch .css-ruk3pj {
+  width: 16px;
+  height: 16px;
+  top: 1px;
+  left: 1px;
+}
+
+.addCtaSwitch .css-197rh82 {
+  width: 42px;
+}
+
