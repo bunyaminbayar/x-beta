@@ -1,88 +1,51 @@
-"use client"; // this is a client component
-
-import React, { useState } from 'react';
+"use client"; // this is a client componentimport React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import FormHelperText from '@material-ui/core/FormHelperText';
 
-const useStyles = makeStyles((theme) => ({
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: theme.spacing(2),
+const useStyles = makeStyles(() => ({
+  code: {
+    whiteSpace: 'pre-line',
+    lineHeight: 1.5,
+    counterReset: 'linenumber',
   },
-  textField: {
-    margin: theme.spacing(1),
-    width: '25ch',
-  },
-  button: {
-    margin: theme.spacing(1),
+  line: {
+    counterIncrement: 'linenumber',
+    '&:before': {
+      content: 'counter(linenumber)',
+      marginRight: '10px',
+      color: '#999',
+      display: 'inline-block',
+      textAlign: 'right',
+      width: '40px',
+    },
   },
 }));
 
-const FormValidationExample = () => {
+export default function CodeBlock() {
   const classes = useStyles();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [usernameError, setUsernameError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (username === '') {
-      setUsernameError(true);
-    }
-    if (password === '') {
-      setPasswordError(true);
-    }
-    if (username !== '' && password !== '') {
-      alert('Form submitted successfully');
-    }
-  };
-
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-    setUsernameError(false);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-    setPasswordError(false);
+  const handleCopyClick = () => {
+    navigator.clipboard.writeText(`
+function sum(a, b) {
+  return a + b;
+}
+console.log(sum(1, 2)); // Output: 3
+    `);
   };
 
   return (
-    <form className={classes.form} onSubmit={handleSubmit}>
-      <TextField
-        className={classes.textField}
-        label="Username"
-        value={username}
-        onChange={handleUsernameChange}
-        error={usernameError}
-        helperText={usernameError ? 'Username is required' : ''}
-      />
-      <TextField
-        className={classes.textField}
-        label="Password"
-        type="password"
-        value={password}
-        onChange={handlePasswordChange}
-        error={passwordError}
-        helperText={passwordError ? 'Password is required' : ''}
-      />
-      <Button
-        className={classes.button}
-        variant="contained"
-        color="primary"
-        type="submit"
-      >
-        Submit
+    <>
+      <Typography variant="body1" component="pre" className={classes.code}>
+        <div className={classes.line}>function sum(a, b) {'{'} </div>
+        <div className={classes.line}>  return a + b;</div>
+        <div className={classes.line}>{'}'}</div>
+        <div className={classes.line}>console.log(sum(1, 2)); // Output: 3</div>
+      </Typography>
+      <Button variant="contained" color="primary" onClick={handleCopyClick}>
+        Copy Code
       </Button>
-    </form>
+    </>
   );
-};
-
-export default FormValidationExample;
+}

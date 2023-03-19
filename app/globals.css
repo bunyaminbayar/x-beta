@@ -25,3 +25,19 @@ body {
 .css-1wc848c-MuiFormHelperText-root.Mui-error {
   margin-left: 0;
 }
+
+.closeMenuIcon span {
+  margin-right: 0px;
+  margin-left: 0px;
+  transform: rotate(180deg);
+}
+
+.closeMenuIcon span svg {
+  height: 11px;
+  width: 11px;
+}
+
+.trackWebSiteIcon {
+  height: 18px;
+  margin-right: 14px;
+}
