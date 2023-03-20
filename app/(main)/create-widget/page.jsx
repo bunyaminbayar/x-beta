@@ -180,14 +180,22 @@ function CreateWidget() {
         // control form
         if (widgetNameReady === true && widgetTitleReady == true && ctaTextReady === true && ctaLinkReady === true && emojiReady === true) {
             // success form
-            console.log(widgetName, widgetTitle, ctaText, ctaLink, widgetPosition, widgetBody, text, "success");
+            var data = widgetName + widgetTitle + ctaText + ctaLink + widgetPosition + widgetBody + text;
+            if (mySwitchState === true) {
+                // without cta 
+                data = widgetName + widgetTitle + widgetBody + text;
+            }
+            if (iconText === true) {
+                // without cta 
+                data = widgetName + text;
+            }
+            console.log(data, "success");
         }
-
     };
 
     // MUI Meida query rulles
     const theme = useTheme();
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
     // emoji funcs
     function handleInputChange(event) {
@@ -213,8 +221,8 @@ function CreateWidget() {
                 </Breadcrumbs>
             </Box>
             <Box display="flex" height="calc(100% - 70px)" justifyContent="center" alignItems="center" padding={isSmallScreen ? '0px 10px 0px 10px' : '0px 0px 0px 0px'}>
-                <Box width={'100%'} maxWidth='945px' color="#161616">
-                    <Box padding={isSmallScreen ? '15px 10px 15px 10px' : '37px 28px 28px 28px'} sx={{
+                <Box width={'100%'} maxWidth={isSmallScreen ? '450px' : '945px'} color="#161616">
+                    <Box padding={isSmallScreen ? '15px 10px 25px 10px' : '37px 28px 28px 28px'} sx={{
                         '--Grid-borderWidth': '1px',
                         border: 'var(--Grid-borderWidth) solid',
                         borderColor: 'divider',
@@ -222,7 +230,7 @@ function CreateWidget() {
                         mb: 4,
                     }}>
                         <Grid container display="flex" alignItems="start">
-                            <Grid item xs={12} sm={6} paddingBottom={isSmallScreen ? '16px' : '0px'}>
+                            <Grid item xs={12} md={6} paddingBottom={isSmallScreen ? '16px' : '0px'}>
                                 <Typography sx={{ mb: 3 }} component="h1" variant="h5" fontWeight="medium" fontSize={'18px'} lineHeight={'21px'}>
                                     Create Widget
                                 </Typography>
@@ -382,8 +390,8 @@ function CreateWidget() {
                                     </Button>
                                 </Box>
                             </Grid>
-                            <Grid item xs={12} sm={6} >
-                                <Box padding={isSmallScreen ? '0px' : '0px 14px 0px 46px'}>
+                            <Grid item xs={12} md={6} >
+                                <Box padding={isSmallScreen ? '20px 0 0 0' : '0px 14px 0px 46px'}>
                                     <Typography sx={{ mb: 3 }} textAlign="center" component="h3" variant="h3" fontWeight="medium" fontSize="15px" lineHeight="21px">
                                         Widget Preview
                                     </Typography>
