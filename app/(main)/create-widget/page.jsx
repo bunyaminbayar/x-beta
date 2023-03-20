@@ -14,7 +14,8 @@ import Grid from '@mui/material/Grid';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import MenuItem from '@mui/material/MenuItem';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MUISwitch from './../../components/switch'
+import MUISwitch from './../../components/switch';
+import InputEmoji from "react-input-emoji";
 
 
 function CreateWidget() {
@@ -48,6 +49,10 @@ function CreateWidget() {
     const [mySwitchCont, setmySwitchCont] = useState(false);
     // set Icon + text or only Icon
     const [iconText, setIconText] = useState(false);
+    // emoji state
+    const [text, setText] = useState('');
+    const [emojiError, setEmojiError] = useState('');
+    const [emojiReady, setEmojiReady] = useState(false);
 
     // enter widget name
     const handleChangeWidgetName = (event) => {
@@ -133,6 +138,10 @@ function CreateWidget() {
             if (mySwitchCont === false) {
                 setMySwitchState(false);
             }
+            setWidgetNameReady(false);
+            setCtaLinkReady(false);
+            setCtaTextReady(false);
+            setWidgetTitleReady(false);
         }
     };
 
@@ -143,16 +152,20 @@ function CreateWidget() {
             if (mySwitchCont === false) {
                 setMySwitchState(true);
             }
+            setWidgetError('');
+            setWidgetNameReady(true);
+            setCtaLinkError('');
+            setCtaLinkReady(true);
+            setCtaTextReady(true);
+            setCtaTextError('');
+            setwidgetTitleError('');
+            setWidgetTitleReady(true);
         }
     };
 
     const submitForm = (e) => {
         e.preventDefault();
-        //
-        if (widgetNameReady === true && widgetTitleReady == true && ctaTextReady === true && ctaLinkReady === true) {
-            // success form
-            console.log(widgetName, widgetTitle, ctaText, ctaLink, widgetPosition, widgetBody, "success");
-        } if (widgetNameReady === false) {
+        if (widgetNameReady === false) {
             setWidgetError('Please enter Widget Name');
         } if (widgetTitleReady === false) {
             setwidgetTitleError('Please enter Title');
@@ -160,6 +173,15 @@ function CreateWidget() {
             setCtaTextError('Please enter CTA Text');
         } if (ctaLinkReady === false) {
             setCtaLinkError('Please enter CTA Link');
+        } if (text.length < 1) {
+            setEmojiError('Please Select Emoji');
+            setEmojiReady(false);
+        }
+        
+        // control form
+        if (widgetNameReady === true && widgetTitleReady == true && ctaTextReady === true && ctaLinkReady === true && emojiReady === true) {
+            // success form
+            console.log(widgetName, widgetTitle, ctaText, ctaLink, widgetPosition, widgetBody, text, "success");
         }
 
     };
@@ -167,11 +189,20 @@ function CreateWidget() {
     // MUI Meida query rulles
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-    //
+
+    // emoji funcs
+    function handleInputChange(event) {
+        setText(event.target.value);
+    }
+    function handleEmojiChange(emoji) {
+        setText(emoji.slice(-2));
+        setEmojiReady(true);
+        setEmojiError('');
+    }
 
     return (
         <>
-            <Box padding={isSmallScreen ? '20px 20px 20px 20px' : '20px 56px 20px 56px'}>
+            <Box padding={isSmallScreen ? '20px 10px 20px 10px' : '20px 56px 20px 56px'}>
                 <Breadcrumbs maxItems={4} aria-label="breadcrumb" fontSize={'14px'} lineHeight={'18px'}>
                     <Link underline="hover" href="#" color={'#0F62FE'}>
                         ACME LTD
@@ -182,13 +213,12 @@ function CreateWidget() {
                     <Typography color="#161616">Create Widget</Typography>
                 </Breadcrumbs>
             </Box>
-            <Box display="flex" height="calc(100% - 70px)" justifyContent="center" alignItems="center" padding={isSmallScreen ? '0px 20px 0px 20px' : '0px 0px 0px 0px'}>
+            <Box display="flex" height="calc(100% - 70px)" justifyContent="center" alignItems="center" padding={isSmallScreen ? '0px 10px 0px 10px' : '0px 0px 0px 0px'}>
                 <Box width={'100%'} maxWidth='945px' color="#161616">
-                    <Box sx={{
+                    <Box padding={isSmallScreen ? '15px 10px 15px 10px' : '37px 28px 28px 28px'} sx={{
                         '--Grid-borderWidth': '1px',
                         border: 'var(--Grid-borderWidth) solid',
                         borderColor: 'divider',
-                        p: '37px 28px 28px 28px',
                         borderRadius: '12px',
                         mb: 4,
                     }}>
@@ -226,30 +256,28 @@ function CreateWidget() {
                                             Widget configuration
                                         </Typography>
                                         <Grid container display="flex" alignItems="center" sx={{ alignItems: 'baseline' }}>
-                                            <Grid item xs={3} >
+                                            <Grid item xs={12} sm={2} >
                                                 <Typography color="#525252" fontSize="12px" lineHeight="16px" sx={{ mb: 1 }}>
                                                     Icon
                                                 </Typography>
-                                                <TextField
-                                                    className='iconInput'
-                                                    id="filled-select-currency"
-                                                    select
-                                                    fontSize='14px'
-                                                    fullWidth
-                                                    defaultValue='menu'
-                                                    variant="filled"
-                                                    onChange={(event) => setIcon(event.target.value)}
-                                                    SelectProps={{
-                                                        IconComponent: ExpandMoreIcon,
-                                                    }}
-                                                >
-                                                    <MenuItem key='0' value='menu'>
-                                                        menu
-                                                    </MenuItem>
-                                                </TextField>
+                                                <div className='emojiPickerBox'>
+                                                    <TextField
+                                                        fontSize='14px'
+                                                        fullWidth
+                                                        variant="filled"
+                                                        error={!!emojiError}
+                                                        helperText={emojiError}
+                                                        SelectProps={{
+                                                            IconComponent: ExpandMoreIcon,
+                                                        }}
+                                                        value={text}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                    <InputEmoji id="emoji-picker" onChange={handleEmojiChange} />
+                                                </div>
                                             </Grid>
-                                            <Grid item xs={9} sx={{ pl: 2 }}>
-                                                <Typography color="#525252" fontSize="12px" lineHeight="16px" sx={{ mb: 1 }}>
+                                            <Grid item xs={12} sm={10} paddingLeft={isSmallScreen ? '0px' : '14px'}>
+                                                <Typography color={iconText ? '#C6C6C6' : '#525252'} fontSize="12px" lineHeight="16px" sx={{ mb: 1 }}>
                                                     Title
                                                 </Typography>
                                                 <TextField
@@ -265,7 +293,7 @@ function CreateWidget() {
                                                 />
                                             </Grid>
                                         </Grid>
-                                        <Typography color="#525252" fontSize="12px" lineHeight="16px" sx={{ mb: 1, mt: 2 }}>
+                                        <Typography color={iconText ? '#C6C6C6' : '#525252'} fontSize="12px" lineHeight="16px" sx={{ mb: 1, mt: 2 }}>
                                             Body
                                         </Typography>
                                         <TextField
@@ -280,10 +308,12 @@ function CreateWidget() {
                                             variant="filled"
                                             sx={{ resize: 'both', overflowY: 'auto', overflowX: 'hidden', maxWidth: '100%' }}
                                         />
-                                        <Typography color="#525252" fontSize="12px" lineHeight="16px" sx={{ mb: 1, mt: 2 }}>
+                                        <Typography color={iconText ? '#C6C6C6' : '#525252'} fontSize="12px" lineHeight="16px" sx={{ mb: 1, mt: 2 }}>
                                             Add CTA button
                                         </Typography>
-                                        <MUISwitch onChange={handleSwitchChange} defaultChecked />
+                                        <div className={iconText ? 'greeColor' : ''}>
+                                            <MUISwitch onChange={handleSwitchChange} defaultChecked />
+                                        </div>
                                         <Grid container display="flex" alignItems="center" sx={{ mt: 2, alignItems: 'baseline' }}>
                                             <Grid item xs={4} >
                                                 <Typography color={mySwitchState ? '#C6C6C6' : '#525252'} fontSize="12px" lineHeight="16px" sx={{ mb: 1 }}>

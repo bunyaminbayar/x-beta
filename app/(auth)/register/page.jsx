@@ -86,7 +86,7 @@ function Register() {
 
   return (
     <>
-      <Box display="flex" height="100%" justifyContent="center" alignItems="center">
+      <Box display="flex" sx={{ minHeight: 'calc(100vh - 70px)' }} justifyContent="center" alignItems="center">
         <Box padding={isSmallScreen ? '20px' : '0px'}
           sx={{
             display: 'flex',
