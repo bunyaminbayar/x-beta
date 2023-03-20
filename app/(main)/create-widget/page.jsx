@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import * as React from 'react';
+import NewWidget from './../../components/newWidget';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import TextField from '@mui/material/TextField';
@@ -41,8 +42,6 @@ function CreateWidget() {
     const [widgetPosition, setwidgetPosition] = useState('Top Center');
     //
     const [widgetBody, setwidgetBody] = useState('');
-    // 
-    const [icon, setIcon] = useState('');
     // Switch add CTA
     const [mySwitchState, setMySwitchState] = useState(false);
     // Switch controller
@@ -177,7 +176,7 @@ function CreateWidget() {
             setEmojiError('Please Select Emoji');
             setEmojiReady(false);
         }
-        
+
         // control form
         if (widgetNameReady === true && widgetTitleReady == true && ctaTextReady === true && ctaLinkReady === true && emojiReady === true) {
             // success form
@@ -219,10 +218,10 @@ function CreateWidget() {
                         '--Grid-borderWidth': '1px',
                         border: 'var(--Grid-borderWidth) solid',
                         borderColor: 'divider',
-                        borderRadius: '12px',
+                        borderRadius: '8px',
                         mb: 4,
                     }}>
-                        <Grid container display="flex" alignItems="center">
+                        <Grid container display="flex" alignItems="start">
                             <Grid item xs={12} sm={6} paddingBottom={isSmallScreen ? '16px' : '0px'}>
                                 <Typography sx={{ mb: 3 }} component="h1" variant="h5" fontWeight="medium" fontSize={'18px'} lineHeight={'21px'}>
                                     Create Widget
@@ -249,7 +248,7 @@ function CreateWidget() {
                                         border: 'var(--Grid-borderWidth) solid',
                                         borderColor: 'divider',
                                         p: '16px 16px 24px 16px',
-                                        borderRadius: '12px',
+                                        borderRadius: '8px',
                                         boxShadow: '0px 4px 7px rgba(0, 0, 0, 0.05)'
                                     }}>
                                         <Typography fontSize="13px" variant='h5' component='h5' lineHeight="16px" color='#161616' fontWeight='500' sx={{ mb: '20px' }}>
@@ -304,7 +303,7 @@ function CreateWidget() {
                                             onChange={(event) => setwidgetBody(event.target.value)}
                                             multiline
                                             rows={3}
-                                            defaultValue="To make your birthday even more special, we are offering you a promotion as a gift."
+                                            placeholder="Text"
                                             variant="filled"
                                             sx={{ resize: 'both', overflowY: 'auto', overflowX: 'hidden', maxWidth: '100%' }}
                                         />
@@ -383,10 +382,13 @@ function CreateWidget() {
                                     </Button>
                                 </Box>
                             </Grid>
-                            <Grid item xs={12} sm={6} paddingBottom={isSmallScreen ? '16px' : '0px'}>
-                                <Typography sx={{ mb: '40px' }} component="h3" variant="h3" fontWeight="medium" fontSize={isSmallScreen ? '20px' : '24px'} lineHeight={isSmallScreen ? '22px' : '18px'}>
-                                    666
-                                </Typography>
+                            <Grid item xs={12} sm={6} >
+                                <Box padding={isSmallScreen ? '0px' : '0px 14px 0px 46px'}>
+                                    <Typography sx={{ mb: 3 }} textAlign="center" component="h3" variant="h3" fontWeight="medium" fontSize="15px" lineHeight="21px">
+                                        Widget Preview
+                                    </Typography>
+                                    <NewWidget widgetName={widgetName} emoji={text} widgetTitle={widgetTitle} widgetBody={widgetBody} ctaText={ctaText} ctaLink={ctaLink} mySwitchState={mySwitchState} iconText={iconText} />
+                                </Box>
                             </Grid>
                         </Grid>
                     </Box>

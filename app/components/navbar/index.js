@@ -14,8 +14,6 @@ export default function MenuAppBar() {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-
-
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
