@@ -221,7 +221,7 @@ function CreateWidget() {
                     <Typography color="#161616">Create Widget</Typography>
                 </Breadcrumbs>
             </Box>
-            <Box display="flex" height="calc(100% - 70px)" justifyContent="center" alignItems="center" padding={isSmallScreen ? '0px 10px 0px 10px' : '0px 0px 0px 0px'}>
+            <Box display="flex" minHeight="calc(100vh - 120px)" justifyContent="center" alignItems="center" padding={isSmallScreen ? '0px 10px 0px 10px' : '0px 0px 0px 0px'}>
                 <Box width={'100%'} maxWidth={isSmallScreen ? '450px' : '945px'} color="#161616">
                     <Box padding={isSmallScreen ? '15px 10px 25px 10px' : '37px 28px 28px 28px'} sx={{
                         '--Grid-borderWidth': '1px',

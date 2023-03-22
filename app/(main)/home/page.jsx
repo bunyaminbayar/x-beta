@@ -69,7 +69,7 @@ function Home() {
                     <Typography color="#161616">Home </Typography>
                 </Breadcrumbs>
             </Box>
-            <Box display="flex" height="calc(100% - 70px)" justifyContent="center" alignItems="center" padding={isSmallScreen ? '0px 20px 0px 20px' : '0px 0px 0px 0px'}>
+            <Box display="flex" minHeight="calc(100vh - 120px)" justifyContent="center" alignItems="center" padding={isSmallScreen ? '0px 20px 0px 20px' : '0px 0px 0px 0px'}>
                 <Box width={'100%'} maxWidth='640px' color="#161616">
                     <Typography sx={{ mb: '40px' }} component="h1" variant="h5" fontWeight="medium" fontSize={isSmallScreen ? '20px' : '24px'} lineHeight={isSmallScreen ? '22px' : '18px'}>
                         Welcome to
@@ -158,7 +158,7 @@ function Home() {
                             </Button>
                         </Grid>
                     </Box>
-                    <Grid textAlign={'right'} pt={2}>
+                    <Grid textAlign={'right'} mb={3} pt={2}>
                         <Button
                             variant="outlined"
                             style={{ fontSize: '14px', lineHeight: '18px', paddingTop: '7px', paddingRight: '64px', paddingBottom: '7px', paddingLeft: '16px', color: '#8D8D8D', borderColor: '#8D8D8D', borderRadius: 0, textTransform: 'inherit', background: '#fff' }}
