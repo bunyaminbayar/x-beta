@@ -31,6 +31,7 @@ function CreateWorkplace() {
   // What is your role
   const [yourRole, setYourRole] = useState('marketing-manager');
 
+  // control web site validation input
   const handlechangeWebURL = (event) => {
     const inputValue = event.target.value;
     if (/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test(inputValue)) {
@@ -43,6 +44,7 @@ function CreateWorkplace() {
     }
   };
 
+  // control workspace name input validation
   const handlechangeWorkName = (event) => {
     if (event.target.value.length < 1) {
       setWorkName(event.target.value);
@@ -54,6 +56,7 @@ function CreateWorkplace() {
     }
   };
 
+  // submit form
   const submitForm = (e) => {
     e.preventDefault();
 
@@ -68,7 +71,10 @@ function CreateWorkplace() {
 
   };
 
-  // employees large
+  /**
+   * !! gerçek data işlendiğinde bu değerleri label ve value şekliden ayarlamak lazım.
+   */
+  // employees large select options
   const employeesLarge = [
     {
       value: '1-10employees',
@@ -84,7 +90,7 @@ function CreateWorkplace() {
     }
   ];
 
-  // 
+  //  your large slect option
   const yourRolesArray = [
     {
       value: 'marketing-manager',

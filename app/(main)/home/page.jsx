@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@mui/material/Grid';
 
+// To style the lines of code in pre.
 const useStyles = makeStyles(() => ({
     code: {
         whiteSpace: 'pre-line',
@@ -34,15 +35,16 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-
 function Home() {
 
     // MUI Meida query rulles
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-    //
+
+    // add style
     const classes = useStyles();
 
+    // copy function.
     const handleCopyClick = () => {
         navigator.clipboard.writeText(`
 <script type="text/javascript" src="https://x.com/lib/0.1.0/x.js"></script>
@@ -139,8 +141,8 @@ function Home() {
                         </Typography>
                         <Grid textAlign={'center'} pt={2}>
                             <Button
-                            variant="outlined"
-                            style={{ fontSize: '15px', lineHeight: '16px', paddingTop: '7px', paddingRight: '10px', paddingBottom: '7px', paddingLeft: '10px', color: '#0F62FE', borderColor: '#0F62FE', borderRadius: '7px', textTransform: 'inherit', background: '#fff' }}
+                                variant="outlined"
+                                style={{ fontSize: '15px', lineHeight: '16px', paddingTop: '7px', paddingRight: '10px', paddingBottom: '7px', paddingLeft: '10px', color: '#0F62FE', borderColor: '#0F62FE', borderRadius: '7px', textTransform: 'inherit', background: '#fff' }}
                             >
                                 Connect with
                                 <svg width="97px" height="15px" viewBox="0 0 97 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -157,12 +159,12 @@ function Home() {
                         </Grid>
                     </Box>
                     <Grid textAlign={'right'} pt={2}>
-                    <Button
-                    variant="outlined"
-                    style={{ fontSize: '14px', lineHeight: '18px', paddingTop: '7px', paddingRight: '64px', paddingBottom: '7px', paddingLeft: '16px', color: '#8D8D8D', borderColor: '#8D8D8D', borderRadius: 0, textTransform: 'inherit', background: '#fff' }}
-                    >
-                        Skip installation
-                    </Button>
+                        <Button
+                            variant="outlined"
+                            style={{ fontSize: '14px', lineHeight: '18px', paddingTop: '7px', paddingRight: '64px', paddingBottom: '7px', paddingLeft: '16px', color: '#8D8D8D', borderColor: '#8D8D8D', borderRadius: 0, textTransform: 'inherit', background: '#fff' }}
+                        >
+                            Skip installation
+                        </Button>
                     </Grid>
                 </Box>
             </Box>

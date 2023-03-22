@@ -21,7 +21,8 @@ import InputEmoji from "react-input-emoji";
 
 function CreateWidget() {
 
-    // States
+    // Set States //
+    // widget name
     const [widgetName, setWidgetName] = useState('');
     const [widgetNameError, setWidgetError] = useState('');
     const [widgetNameReady, setWidgetNameReady] = useState(false);
@@ -33,14 +34,13 @@ function CreateWidget() {
     const [ctaText, setCtaText] = useState('');
     const [ctaTextError, setCtaTextError] = useState('');
     const [ctaTextReady, setCtaTextReady] = useState(false);
-    //
     // Cta Link
     const [ctaLink, setCtaLink] = useState('');
     const [ctaLinkError, setCtaLinkError] = useState('');
     const [ctaLinkReady, setCtaLinkReady] = useState(false);
     // Widget position
     const [widgetPosition, setwidgetPosition] = useState('Top Center');
-    //
+    // widget body textarea
     const [widgetBody, setwidgetBody] = useState('');
     // Switch add CTA
     const [mySwitchState, setMySwitchState] = useState(false);
@@ -53,7 +53,7 @@ function CreateWidget() {
     const [emojiError, setEmojiError] = useState('');
     const [emojiReady, setEmojiReady] = useState(false);
 
-    // enter widget name
+    // widget name input validation
     const handleChangeWidgetName = (event) => {
         if (event.target.value.length < 1) {
             setWidgetError('Please enter Widget Name');
@@ -65,7 +65,7 @@ function CreateWidget() {
         }
     };
 
-    // widget title
+    // widget title input validation
     const handleChangeWidgetTitle = (event) => {
         if (event.target.value.length < 1) {
             setwidgetTitleError('Please enter Title');
@@ -77,7 +77,7 @@ function CreateWidget() {
         }
     };
 
-    // Cta text
+    // Cta text input validation
     const handleChangeCtaText = (event) => {
         if (event.target.value.length < 1) {
             setCtaTextError('Please enter CTA Text');
@@ -89,7 +89,7 @@ function CreateWidget() {
         }
     };
 
-    // cta link
+    // cta link validation
     const handleChangeCtaLink = (event) => {
         if (event.target.value.length < 1) {
             setCtaLinkError('Please enter CTA Link');
@@ -101,11 +101,11 @@ function CreateWidget() {
         }
     };
 
-    // Switch add CTA
+    // Switch add CTA functions
     const handleSwitchChange = () => {
         if (mySwitchState === false) {
             setMySwitchState(true);
-            // add for error
+            // remove error texts
             setCtaTextReady(true);
             setCtaTextError('');
             setCtaLinkReady(true);
@@ -117,7 +117,7 @@ function CreateWidget() {
             }
         } if (mySwitchState === true) {
             setMySwitchState(false);
-            // add for error
+            // remove error texts
             setCtaTextReady(false);
             setCtaTextError('');
             setCtaLinkReady(false);
@@ -129,7 +129,7 @@ function CreateWidget() {
         }
     };
 
-    // Icon + Text or Icon Only funcs
+    // Icon + Text switch
     const iconAndText = () => {
         if (iconText === true) {
             setIconText(false);
@@ -144,6 +144,7 @@ function CreateWidget() {
         }
     };
 
+    // Only Icon Swicth
     const onlyIcon = () => {
         if (iconText === false) {
             setIconText(true);
@@ -151,8 +152,8 @@ function CreateWidget() {
             if (mySwitchCont === false) {
                 setMySwitchState(true);
             }
-            setWidgetError('');
-            setWidgetNameReady(true);
+            
+            // remove error texts
             setCtaLinkError('');
             setCtaLinkReady(true);
             setCtaTextReady(true);
@@ -186,7 +187,7 @@ function CreateWidget() {
                 data = widgetName + widgetTitle + widgetBody + text;
             }
             if (iconText === true) {
-                // without cta 
+                // only Icon
                 data = widgetName + text;
             }
             console.log(data, "success");
@@ -400,8 +401,6 @@ function CreateWidget() {
                             </Grid>
                         </Grid>
                     </Box>
-
-
                 </Box>
             </Box>
         </>

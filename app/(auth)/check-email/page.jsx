@@ -16,6 +16,7 @@ function CheckEmail() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
+  // set states
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
   const [formReady, setFormReady] = useState(false);
@@ -36,6 +37,7 @@ function CheckEmail() {
 
     if (formReady === true) {
       console.log(value);
+      setFormReady(false);
     } else {
       setError('Please enter a code');
     }

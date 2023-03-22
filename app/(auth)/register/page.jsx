@@ -24,29 +24,29 @@ function Register() {
   // Show or hide password with TextField icons
   const [showPassword, setShowPassword] = useState(false);
 
-  //
+  // for to show password
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
+  // for to hide password
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
-  // states
+  // states. Email and Password
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // validations Message
+  // validations states Message
   const [emailError, setEmailError] = useState('');
   const [passError, setPassError] = useState('');
 
   // validations Rulles
-  // email
+  // email should be inslude @ and "." dot
   const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
   };
-  // password
+  // password should be include; one sembol, one number, one capital letter and lower letter
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])(?=.*[a-zA-Z]).{8,}$/;
 
   const handleSubmit = async (e) => {
@@ -69,7 +69,7 @@ function Register() {
       setPassError('Password must be at least 8 characters, contain at least one special symbol, contain at least one uppercase letter, contain at least one number, and contain at least one lowercase letter.');
       return;
     }
-    // form submit edildiğinde yapılacak işlemler
+    // form submit function
     const data = { email, password };
     console.log(data);
 
@@ -126,7 +126,7 @@ function Register() {
               />
               {emailError && <Typography color="#eb2f06" fontSize="12px" lineHeight="12px" sx={{ margin: '0 0 10px 0' }}>{emailError}</Typography>}
               <Typography mt="32px" color="#525252" fontSize="12px" lineHeight="12px">
-              Password
+                Password
               </Typography>
               <TextField
                 required
@@ -175,13 +175,12 @@ function Register() {
                 </Grid>
               </Grid>
               <Typography color="#525252" textAlign="center" fontSize="13px" lineHeight="19px" sx={{ margin: '0 0 10px 0' }}>
-              By signing up, you agree to the <Link color="#525252" sx={{ textDecoration: 'auto' }} fontWeight={600}>Terms of Service</Link> and <Link color="#525252" sx={{ textDecoration: 'auto' }} fontWeight={600} >Data Processing Agreement</Link>
+                By signing up, you agree to the <Link color="#525252" sx={{ textDecoration: 'auto' }} fontWeight={600}>Terms of Service</Link> and <Link color="#525252" sx={{ textDecoration: 'auto' }} fontWeight={600} >Data Processing Agreement</Link>
               </Typography>
             </Box>
           </Box>
         </Box>
       </Box>
-
     </>
   );
 }
