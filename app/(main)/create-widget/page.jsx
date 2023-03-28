@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import MenuItem from '@mui/material/MenuItem';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MUISwitch from './../../components/switch';
 import InputEmoji from "react-input-emoji";
 
@@ -249,8 +249,8 @@ function CreateWidget() {
                                         placeholder='H-birthday-2023-promo'
                                     />
                                     <ButtonGroup variant="outlined" size="small" aria-label="small button group" sx={{ mt: 2, mb: 2 }}>
-                                        <Button onClick={iconAndText} variant={iconText ? 'outlined' : 'contained'} sx={{ backgroundColor: iconText ? '' : '#161616', color: iconText ? '#161616' : '#fff', padding: '6px 32px 6px 16px', fontSize: '14px', lineHeight: '18px', borderColor: '#161616', textTransform: 'inherit', '&:hover': { borderColor: '#161616', backgroundColor: iconText ? '' : '#161616' } }}>Icon + text</Button>
-                                        <Button onClick={onlyIcon} variant={iconText ? 'contained' : 'outlined'} sx={{ backgroundColor: iconText ? '#161616' : '', color: iconText ? '#fff' : '#161616', padding: '6px 32px 6px 16px', fontSize: '14px', lineHeight: '18px', borderColor: '#161616', textTransform: 'inherit', '&:hover': { borderColor: '#161616', backgroundColor: iconText ? '#161616' : '' } }}>Icon only</Button>
+                                        <Button onClick={iconAndText} variant={iconText ? 'outlined' : 'contained'} sx={{ backgroundColor: iconText ? '' : '#161616 !important', color: iconText ? '#161616' : '#fff', padding: '6px 32px 6px 16px', fontSize: '14px', lineHeight: '18px', borderColor: '#161616', textTransform: 'inherit', '&:hover': { borderColor: '#161616', backgroundColor: iconText ? '' : '#161616' } }}>Icon + text</Button>
+                                        <Button onClick={onlyIcon} variant={iconText ? 'contained' : 'outlined'} sx={{ backgroundColor: iconText ? '#161616 !important' : '', color: iconText ? '#fff' : '#161616', padding: '6px 32px 6px 16px', fontSize: '14px', lineHeight: '18px', borderColor: '#161616', textTransform: 'inherit', '&:hover': { borderColor: '#161616', backgroundColor: iconText ? '#161616' : '' } }}>Icon only</Button>
                                     </ButtonGroup>
                                     <Box sx={{
                                         '--Grid-borderWidth': '1px',

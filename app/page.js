@@ -11,7 +11,6 @@ export default function Home() {
         <Link href="cereate-workspace">cereate-workspace</Link>
         <Link href="home">Home</Link>
         <Link href="create-widget">Create widget</Link>
-
       </Stack>
     </Grid>
   );

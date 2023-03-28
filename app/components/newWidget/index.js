@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/typography';
 import { Button } from '@mui/material';
 import Link from '@mui/material/Link';
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from '@mui/icons-material/Close';
 // 
 export default function NewWidget(props) {
 
@@ -50,7 +50,7 @@ export default function NewWidget(props) {
                         {props.widgetBody}
                     </Typography>
                     <Link width="fit-content" display={props.mySwitchState ? 'none' : 'block'} sx={{ '&:hover': { textDecoration: 'none' } }} href={props.ctaLink}>
-                        <Button sx={{ mt: 2, fontSize: '13px', lineHeight: '21px', background: '#0F63FE', minHeight: '28px', fontWeight: 600, p: '4px 8px', '&:hover': { background: '#2f78ff' } }} variant="contained">
+                        <Button sx={{ mt: 2, fontSize: '13px', lineHeight: '21px', background: '#0F63FE !important', minHeight: '28px', fontWeight: 600, p: '4px 8px', '&:hover': { background: '#2f78ff' } }} variant="contained">
                             {props.ctaText}
                         </Button>
                     </Link>

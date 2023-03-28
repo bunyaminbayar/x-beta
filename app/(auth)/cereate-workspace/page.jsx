@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import MenuItem from '@mui/material/MenuItem';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function CreateWorkplace() {
 
@@ -117,7 +117,7 @@ function CreateWorkplace() {
           }}
         >
           <Box width={'100%'} maxWidth='400px'>
-            <Typography color="#161616" sx={{ mb: 3 }} component="h1" variant="h5" fontWeight="medium" fontSize={isSmallScreen ? '20px' : '24px'} lineHeight={isSmallScreen ? '22px' : '18px'}>
+            <Typography color="#161616" sx={{ mb: 3, mt: 2 }} component="h1" variant="h5" fontWeight="medium" fontSize={isSmallScreen ? '20px' : '24px'} lineHeight={isSmallScreen ? '22px' : '18px'}>
               Create a workspace
             </Typography>
             <Typography color="#161616" fontSize='14px' lineHeight='23px' paddingRight={isSmallScreen ? '0px' : '30px'}>
@@ -196,7 +196,7 @@ function CreateWorkplace() {
                     size="large"
                     variant="contained"
                     fontWeight="medium"
-                    sx={{ fontSize: '14px', lineHeight: '16px', mt: 3, pt: 2, pr: 8, pb: 2, pl: 2, borderRadius: 0, textTransform: 'inherit', background: '#0F62FE' }}
+                    sx={{ fontSize: '14px', lineHeight: '16px', mt: 3, mb: 2, pt: 2, pr: 8, pb: 2, pl: 2, borderRadius: 0, textTransform: 'inherit', background: '#0F62FE' }}
                   >
                     Create workspace
                   </Button>

@@ -79,7 +79,7 @@ function CheckEmail() {
                     size="large"
                     variant="contained"
                     fontWeight="medium"
-                    sx={{ fontSize: '14px', lineHeight: '16px', pt: 2, pr: 8, pb: 2, pl: 2, borderRadius: 0, textTransform: 'inherit', background: '#0F62FE' }}
+                    sx={{ fontSize: '14px', lineHeight: '16px', pt: 2, pr: 8, pb: 2, pl: 2, borderRadius: 0, textTransform: 'inherit', backgroundColor: '#0F62FE' }}
                   >
                     Verify account
                   </Button>

@@ -11,9 +11,10 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { InputAdornment, IconButton } from "@material-ui/core";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
-
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/iconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 function Register() {
 
@@ -95,7 +96,7 @@ function Register() {
           }}
         >
           <Box width={'100%'} maxWidth='400px'>
-            <Typography color="#161616" sx={{ marginBottom: '40px' }} component="h1" variant="h5" fontWeight="medium" fontSize={isSmallScreen ? '20px' : '24px'} lineHeight={isSmallScreen ? '22px' : '18px'}>
+            <Typography color="#161616" sx={{ mb: '40px', mt: 2 }} component="h1" variant="h5" fontWeight="medium" fontSize={isSmallScreen ? '20px' : '24px'} lineHeight={isSmallScreen ? '22px' : '18px'}>
               Create your ProductX account
             </Typography>
             <Box display="flex" height="48px" justifyContent="center" alignItems="center" border={1} borderColor="#E3E3E3" >

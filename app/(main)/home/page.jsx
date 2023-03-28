@@ -6,11 +6,11 @@ import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import MenuOpenIcon from '@material-ui/icons/MenuOpen';
-import AddToHomeScreenIcon from '@material-ui/icons/AddToHomeScreen';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import AddToHomeScreenIcon from '@mui/icons-material/AddToHomeScreen';
 import Button from '@mui/material/Button';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@mui/material/Grid';
+import { makeStyles } from '@mui/styles';
 
 // To style the lines of code in pre.
 const useStyles = makeStyles(() => ({
@@ -81,7 +81,7 @@ function Home() {
                         p: '20px',
                     }}>
                         <Typography component="h2" variant="h2" fontWeight="medium" fontSize={isSmallScreen ? '14px' : '15px'} lineHeight={isSmallScreen ? '18px' : '19px'}>
-                            <Button className='closeMenuIcon' sx={{ paddingTop: '5px', paddingRight: '5px', paddingBottom: '5px', paddingLeft: '5px', mr: 2, minWidth: 'auto', background: '#161616', zIndex: -1 }} variant="contained" startIcon={<MenuOpenIcon />}></Button>
+                            <Button className='closeMenuIcon' sx={{ paddingTop: '5px', paddingRight: '5px', paddingBottom: '5px', paddingLeft: '5px', mr: 2, minWidth: 'auto', background: '#161616 !important', zIndex: -1 }} variant="contained" startIcon={<MenuOpenIcon />}></Button>
                             Install ProductX on your site
                         </Typography>
                         <Typography sx={{ mb: '10px', mt: 3 }} component="p" variant="div" fontWeight="medium" fontSize={'14px'} lineHeight={'18px'} >
@@ -104,7 +104,7 @@ function Home() {
                         <Grid container display="flex" alignItems="center" mt={2} mb={1}>
                             <Grid item xs={12} sm={5} paddingBottom={isSmallScreen ? '16px' : '0px'}>
                                 <Button
-                                    type="submit"
+                                    type="btn"
                                     size="large"
                                     variant="outlined"
                                     fontWeight="medium"
