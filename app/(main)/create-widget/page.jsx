@@ -1,6 +1,6 @@
 "use client"; // this is a client component 
 
-import { useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import * as React from 'react';
 import NewWidget from './../../components/newWidget';
 import Typography from '@mui/material/Typography';
@@ -16,7 +16,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import MenuItem from '@mui/material/MenuItem';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MUISwitch from './../../components/switch';
-import InputEmoji from "react-input-emoji";
+import EmojiBox from '@/app/components/emojiBox';
 
 
 function CreateWidget() {
@@ -52,6 +52,8 @@ function CreateWidget() {
     const [text, setText] = useState('');
     const [emojiError, setEmojiError] = useState('');
     const [emojiReady, setEmojiReady] = useState(false);
+    // emoji or svg type 
+    const [isSvgType, setIsSvgType] = useState('false');
 
     // widget name input validation
     const handleChangeWidgetName = (event) => {
@@ -152,7 +154,7 @@ function CreateWidget() {
             if (mySwitchCont === false) {
                 setMySwitchState(true);
             }
-            
+
             // remove error texts
             setCtaLinkError('');
             setCtaLinkReady(true);
@@ -198,12 +200,29 @@ function CreateWidget() {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-    // emoji funcs
-    function handleInputChange(event) {
-        setText(event.target.value);
-    }
-    function handleEmojiChange(emoji) {
-        setText(emoji.slice(-2));
+    // emoji drop down
+    const componentRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    const handleClickOutside = (event) => {
+        if (componentRef.current && !componentRef.current.contains(event.target)) {
+            setIsVisible(false);
+        }
+    };
+
+    const handleInputClick = () => {
+        setIsVisible(true);
+    };
+
+    function setEmojiState(stateEmoji) {
+        setText(stateEmoji);
         setEmojiReady(true);
         setEmojiError('');
     }
@@ -268,20 +287,24 @@ function CreateWidget() {
                                                 <Typography color="#525252" fontSize="12px" lineHeight="16px" sx={{ mb: 1 }}>
                                                     Icon
                                                 </Typography>
-                                                <div className='emojiPickerBox'>
+                                                <div className='emojiPickerBox relative cursor-pointer'>
                                                     <TextField
-                                                        fontSize='14px'
+                                                        className='openEmojiModal'
+                                                        id="filled-select-currency"
+                                                        disabled={mySwitchState}
                                                         fullWidth
                                                         variant="filled"
-                                                        error={!!emojiError}
-                                                        helperText={emojiError}
+                                                        size='small'
                                                         SelectProps={{
                                                             IconComponent: ExpandMoreIcon,
                                                         }}
-                                                        value={text}
-                                                        onChange={handleInputChange}
+                                                        onClick={handleInputClick}
                                                     />
-                                                    <InputEmoji id="emoji-picker" onChange={handleEmojiChange} />
+                                                    {isVisible && (
+                                                        <div ref={componentRef}>
+                                                            <EmojiBox setEmojiState={setEmojiState} setIsSvgType={setIsSvgType} />
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </Grid>
                                             <Grid item xs={12} sm={10} paddingLeft={isSmallScreen ? '0px' : '14px'}>
@@ -396,7 +419,7 @@ function CreateWidget() {
                                     <Typography sx={{ mb: 3 }} textAlign="center" component="h3" variant="h3" fontWeight="medium" fontSize="15px" lineHeight="21px">
                                         Widget Preview
                                     </Typography>
-                                    <NewWidget widgetName={widgetName} emoji={text} widgetTitle={widgetTitle} widgetBody={widgetBody} ctaText={ctaText} ctaLink={ctaLink} mySwitchState={mySwitchState} iconText={iconText} />
+                                    <NewWidget widgetName={widgetName} emoji={text} widgetTitle={widgetTitle} widgetBody={widgetBody} ctaText={ctaText} ctaLink={ctaLink} mySwitchState={mySwitchState} iconText={iconText} isSvgType={isSvgType} />
                                 </Box>
                             </Grid>
                         </Grid>

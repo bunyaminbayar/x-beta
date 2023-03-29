@@ -115,39 +115,15 @@ body {
     padding: 10px 16px 10px 16px;
 }
 
-.emojiPickerBox {
+.greeColor {
+    opacity: 0.3;
+    filter: grayscale(1);
+    z-index: -1;
     position: relative;
 }
 
-.emojiPickerBox .react-input-emoji--container {
-    width: 0;
-    height: 0;
-    min-width: 0;
-    min-height: 0;
-    font-size: 0 !important;
-    overflow: hidden;
-    opacity: 0;
-}
-
-
-.emojiPickerBox .react-emoji {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.emojiPickerBox .react-input-emoji--button {
-    top: 0;
-    left: -12px;
-    width: 100%;
-    min-height: 40px;
-    opacity: 0;
-}
-
-.emojiPickerBox input {
-    font-size: 18px;
-    text-align: center;
-    margin-right: 12px;
+.onlyIcon {
+    margin-top: 7px;
 }
 
 .emojiPickerBox::after {
@@ -164,20 +140,18 @@ body {
     opacity: 0.5;
 }
 
-.react-emoji-picker--wrapper {
-    position: absolute;
-    bottom: auto !important;
-    right: -200px !important;
-    top: -100px;
+.openEmojiModal input {
+    cursor: pointer;
 }
 
-.greeColor {
-    opacity: 0.3;
-    filter: grayscale(1);
-    z-index: -1;
+.emojiBox {
+    z-index: 99;
+}
+
+.react-emoji-picker--container {
     position: relative;
 }
 
-.onlyIcon {
-    margin-top: 7px;
+.react-emoji-picker--wrapper {
+    position: relative;
 }
