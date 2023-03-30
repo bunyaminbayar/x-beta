@@ -27,11 +27,15 @@ export default function NewWidget(props) {
             }}>
                 <Box padding="5px 10px">
                     <Grid container display="flex" alignItems="center">
-                        <Grid item xs={2} textAlign='center'>
-                            <Typography className={props.iconText ? 'onlyIcon' : ''} fontWeight='600' color="#444950" fontSize="24px" lineHeight="26px">
-                                {/** If emoji Svg or String. */}
-                                {props.isSvgType ? <object className='overflow-hidden' height='26px' width="26px" margin='auto' data={svgPathStarter} /> : props.emoji}
-                            </Typography>
+                        <Grid item xs={props.iconText ? 12 : 2} pt={props.isSvgType && props.iconText ? '6px' : '0'} textAlign='center' alignItems="center">
+                            {/** If emoji Svg or String. */}
+                            {props.isSvgType ?
+                                <object className='m-auto' height={props.iconText ? '28px' : '26px'} width={props.iconText ? '28px' : '26px'} data={svgPathStarter} />
+                                :
+                                <Typography fontWeight='600' color="#444950" fontSize={props.iconText ? '28px' : '24px'} lineHeight={props.iconText ? '40px' : '26px'}>
+                                    {props.emoji}
+                                </Typography>
+                            }
                         </Grid>
                         <Grid display={props.iconText ? 'none' : 'block'} item xs={9}>
                             <Typography fontWeight='600' color="#444950" fontSize="14px" lineHeight="17px">
@@ -59,7 +63,6 @@ export default function NewWidget(props) {
                     </Link>
                 </Box>
             </Box>
-
         </>
     );
 }

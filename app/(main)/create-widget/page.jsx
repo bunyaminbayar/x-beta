@@ -183,16 +183,17 @@ function CreateWidget() {
         // control form
         if (widgetNameReady === true && widgetTitleReady == true && ctaTextReady === true && ctaLinkReady === true && emojiReady === true) {
             // success form
-            var data = widgetName + widgetTitle + ctaText + ctaLink + widgetPosition + widgetBody + emoji;
+            var data = { "widgetName": widgetName, "widgetTitle": widgetTitle, "ctaText": ctaText, "ctaLink": ctaLink, "widgetPosition": widgetPosition, "widgetBody": widgetBody, "emoji": emoji };
             if (mySwitchState === true) {
-                // without cta 
-                data = widgetName + widgetTitle + widgetBody + emoji;
+                // without cta
+                data = { "widgetName": widgetName, "widgetTitle": widgetTitle, "widgetBody": widgetBody, "emoji": emoji };
             }
             if (iconText === true) {
                 // only Icon
-                data = widgetName + emoji;
+                data = { "widgetName": widgetName, "emoji": emoji };
             }
-            console.log(data, "success");
+            const jsonData = JSON.stringify(data);
+            console.log(jsonData);
         }
     };
 
@@ -305,7 +306,7 @@ function CreateWidget() {
                                                         }}
                                                         onClick={handleInputClick}
                                                     />
-                                                    {isSvgType ? <object className='overflow-hidden svgInputValue' height='26px' width="26px" margin='auto' data={`data:image/svg+xml;utf8,${encodeURIComponent(emoji)}`} /> : <div className='emojiInputValue' >{emoji}</div>}
+                                                    {isSvgType ? <object className='overflow-hidden svgInputValue' margin='auto' data={`data:image/svg+xml;utf8,${encodeURIComponent(emoji)}`} /> : <div className='emojiInputValue' >{emoji}</div>}
                                                     {isVisible && (
                                                         <div ref={componentRef}>
                                                             {/** Emoji modal component */}
