@@ -1,5 +1,4 @@
-"use client"; // this is a client componentimport React from 'react';
-
+"use client";
 import { useState } from 'react';
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -16,7 +15,6 @@ function TabPanel(props) {
 
     const { children, value, index, ...other } = props;
 
-    console.log(props.emoji, "dsfsd");
     return (
         <div
             role="tabpanel"
@@ -51,8 +49,6 @@ export default function BasicTabs(props) {
 
     // tabs status
     const [tabs, setTabs] = useState(true);
-    // emoji state
-    const [emoji, setEmoji] = useState('');
     // native tabs
     const [value, setValue] = React.useState(0);
 
@@ -62,16 +58,15 @@ export default function BasicTabs(props) {
         const reader = new FileReader();
         reader.onload = handleFileLoad;
         reader.readAsText(file);
-       
     }
 
     const handleFileLoad = (event) => {
         const svgContent = event.target.result;
-        setEmoji(svgContent);
-        props.setEmojiState(svgContent); 
+        props.setEmojiState(svgContent);
         props.setIsSvgType(true);
     }
 
+    // set manuel tabs. because MUI tabs has div in p element
     const handleChange = (event, newValue) => {
         setValue(newValue);
         if (newValue === 0) {
@@ -83,7 +78,6 @@ export default function BasicTabs(props) {
 
     // emojji
     function handleSelectEmoji(selectedEmoji) {
-        setEmoji(selectedEmoji.native);
         props.setEmojiState(selectedEmoji.native);
         props.setIsSvgType(false);
     }
@@ -93,7 +87,7 @@ export default function BasicTabs(props) {
             sx={{
                 minWidth: '390px',
                 maxWidth: '390px',
-                mt: 2,
+                top: '53px',
                 '--Grid-borderWidth': '1px',
                 border: 'var(--Grid-borderWidth) solid',
                 borderColor: 'divider',

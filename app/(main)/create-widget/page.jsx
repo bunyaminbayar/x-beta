@@ -49,7 +49,7 @@ function CreateWidget() {
     // set Icon + text or only Icon
     const [iconText, setIconText] = useState(false);
     // emoji state
-    const [text, setText] = useState('');
+    const [emoji, setEmoji] = useState('');
     const [emojiError, setEmojiError] = useState('');
     const [emojiReady, setEmojiReady] = useState(false);
     // emoji or svg type 
@@ -175,7 +175,7 @@ function CreateWidget() {
             setCtaTextError('Please enter CTA Text');
         } if (ctaLinkReady === false) {
             setCtaLinkError('Please enter CTA Link');
-        } if (text.length < 1) {
+        } if (emoji.length < 1) {
             setEmojiError('Please Select Emoji');
             setEmojiReady(false);
         }
@@ -183,14 +183,14 @@ function CreateWidget() {
         // control form
         if (widgetNameReady === true && widgetTitleReady == true && ctaTextReady === true && ctaLinkReady === true && emojiReady === true) {
             // success form
-            var data = widgetName + widgetTitle + ctaText + ctaLink + widgetPosition + widgetBody + text;
+            var data = widgetName + widgetTitle + ctaText + ctaLink + widgetPosition + widgetBody + emoji;
             if (mySwitchState === true) {
                 // without cta 
-                data = widgetName + widgetTitle + widgetBody + text;
+                data = widgetName + widgetTitle + widgetBody + emoji;
             }
             if (iconText === true) {
                 // only Icon
-                data = widgetName + text;
+                data = widgetName + emoji;
             }
             console.log(data, "success");
         }
@@ -204,6 +204,7 @@ function CreateWidget() {
     const componentRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
 
+    // emoji tabs. custom or emoji
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
@@ -217,14 +218,16 @@ function CreateWidget() {
         }
     };
 
+    // Emoji tabs.
     const handleInputClick = () => {
         setIsVisible(true);
     };
 
     function setEmojiState(stateEmoji) {
-        setText(stateEmoji);
+        setEmoji(stateEmoji);
         setEmojiReady(true);
         setEmojiError('');
+        setIsVisible(false);
     }
 
     return (
@@ -295,13 +298,17 @@ function CreateWidget() {
                                                         fullWidth
                                                         variant="filled"
                                                         size='small'
+                                                        error={!!emojiError}
+                                                        helperText={emojiError}
                                                         SelectProps={{
                                                             IconComponent: ExpandMoreIcon,
                                                         }}
                                                         onClick={handleInputClick}
                                                     />
+                                                    {isSvgType ? <object className='overflow-hidden svgInputValue' height='26px' width="26px" margin='auto' data={`data:image/svg+xml;utf8,${encodeURIComponent(emoji)}`} /> : <div className='emojiInputValue' >{emoji}</div>}
                                                     {isVisible && (
                                                         <div ref={componentRef}>
+                                                            {/** Emoji modal component */}
                                                             <EmojiBox setEmojiState={setEmojiState} setIsSvgType={setIsSvgType} />
                                                         </div>
                                                     )}
@@ -419,7 +426,7 @@ function CreateWidget() {
                                     <Typography sx={{ mb: 3 }} textAlign="center" component="h3" variant="h3" fontWeight="medium" fontSize="15px" lineHeight="21px">
                                         Widget Preview
                                     </Typography>
-                                    <NewWidget widgetName={widgetName} emoji={text} widgetTitle={widgetTitle} widgetBody={widgetBody} ctaText={ctaText} ctaLink={ctaLink} mySwitchState={mySwitchState} iconText={iconText} isSvgType={isSvgType} />
+                                    <NewWidget widgetName={widgetName} emoji={emoji} widgetTitle={widgetTitle} widgetBody={widgetBody} ctaText={ctaText} ctaLink={ctaLink} mySwitchState={mySwitchState} iconText={iconText} isSvgType={isSvgType} />
                                 </Box>
                             </Grid>
                         </Grid>

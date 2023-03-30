@@ -141,7 +141,13 @@ body {
 }
 
 .openEmojiModal input {
+    opacity: 0;
     cursor: pointer;
+}
+
+.openEmojiModal .MuiFormHelperText-root.Mui-error.MuiFormHelperText-sizeSmall{
+    margin-left: 0;
+    line-height: 1.5;
 }
 
 .emojiBox {
@@ -154,4 +160,21 @@ body {
 
 .react-emoji-picker--wrapper {
     position: relative;
+}
+
+.openEmojiModal {
+    position: relative;
+    z-index: 10;
+}
+
+.emojiInputValue, .svgInputValue {
+    position: absolute;
+    z-index: 0;
+    height: 40px;
+    width: 50px;
+    top: 0;
+    font-size: 18px;
+    line-height: 32px;
+    text-align: center;
+    padding: 4px;
 }

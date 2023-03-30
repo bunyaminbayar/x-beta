@@ -1,7 +1,6 @@
 "use client"; // this is a client component 
 
 import * as React from 'react';
-import { useState } from 'react';
 import Box from '@mui/material/Box';
 import { Divider } from '@mui/material';
 import Grid from '@mui/material/Grid';
@@ -12,9 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 // 
 export default function NewWidget(props) {
 
-
     const svgPathStarter = `data:image/svg+xml;utf8,${encodeURIComponent(props.emoji)}`;
-
 
     return (
         <>
@@ -32,7 +29,8 @@ export default function NewWidget(props) {
                     <Grid container display="flex" alignItems="center">
                         <Grid item xs={2} textAlign='center'>
                             <Typography className={props.iconText ? 'onlyIcon' : ''} fontWeight='600' color="#444950" fontSize="24px" lineHeight="26px">
-                                {props.isSvgType ? <object height='26px' data={svgPathStarter} /> : props.emoji}
+                                {/** If emoji Svg or String. */}
+                                {props.isSvgType ? <object className='overflow-hidden' height='26px' width="26px" margin='auto' data={svgPathStarter} /> : props.emoji}
                             </Typography>
                         </Grid>
                         <Grid display={props.iconText ? 'none' : 'block'} item xs={9}>
