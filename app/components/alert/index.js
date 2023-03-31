@@ -17,7 +17,7 @@ export default function Alert_app(props) {
     useEffect(() => {
         const timer = setTimeout(() => {
             handleCloseAlert();
-        }, 300000);
+        }, 3000);
 
 
         // set the alert message based on the value of props.formsStatus
