@@ -17,6 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MUISwitch from './../../components/switch';
 import EmojiBox from '@/app/components/emojiBox';
+import Alert_app from '@/app/components/alert';
 
 
 function CreateWidget() {
@@ -54,6 +55,8 @@ function CreateWidget() {
     const [emojiReady, setEmojiReady] = useState(false);
     // emoji or svg type 
     const [isSvgType, setIsSvgType] = useState('false');
+    // Form save Status  
+    const [formsStatus, setFormsStatus] = useState('default');
 
     // widget name input validation
     const handleChangeWidgetName = (event) => {
@@ -194,6 +197,11 @@ function CreateWidget() {
             }
             const jsonData = JSON.stringify(data);
             console.log(jsonData);
+
+            /* Froms Status => default , success, error
+            *  use setFormsStatus('error'); for error alert
+            */
+            setFormsStatus('success');
         }
     };
 
@@ -233,6 +241,12 @@ function CreateWidget() {
 
     return (
         <>
+            {/** Alert area */}
+            {formsStatus === 'success' || formsStatus === 'success' ?
+                <Alert_app formsStatus={formsStatus} />
+                :
+                null
+            }
             <Box padding={isSmallScreen ? '20px 10px 20px 10px' : '20px 56px 20px 56px'}>
                 <Breadcrumbs maxItems={4} aria-label="breadcrumb" fontSize={'14px'} lineHeight={'18px'}>
                     <Link underline="hover" href="#" color={'#0F62FE'}>

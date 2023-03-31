@@ -9,6 +9,8 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function MenuAppBar() {
 
@@ -21,6 +23,10 @@ export default function MenuAppBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+   // MUI Meida query rulles
+   const theme = useTheme();
+   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <AppBar position="static" sx={{ background: '#161616' }}>
@@ -48,7 +54,8 @@ export default function MenuAppBar() {
               onClick={handleMenu}
               color="inherit"
             >
-              Logged in as: john@doe.com
+              {isSmallScreen ? "john@doe.com" : "Logged in as: john@doe.com"}
+              
             </Button>
             <Menu
               id="menu-appbar"

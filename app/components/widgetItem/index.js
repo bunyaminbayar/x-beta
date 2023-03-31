@@ -19,11 +19,11 @@ export default function WidgetItem(props) {
                 '--Grid-borderWidth': '1px',
                 border: 'var(--Grid-borderWidth) solid',
                 borderColor: 'divider',
-                borderRadius: '8px',
+                borderRadius: '6px',
                 margin: 'auto',
                 minWidth: '54px',
                 minHeight: '54px',
-                boxShadow: '0px 4px 7px rgba(0, 0, 0, 0.05)'
+                boxShadow: '0px 4px 10px rgba(33, 37, 41, 0.15)'
             }}>
                 {props.widgetTitle ?
                     <Box padding="5px 10px">

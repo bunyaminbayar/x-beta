@@ -30,8 +30,7 @@ export default function ListWidgets(props) {
                         borderColor: 'divider',
                         borderRadius: '8px',
                         margin: 'auto',
-                        p: '10px 16px 20px 16px',
-                        boxShadow: '0px 4px 7px rgba(0, 0, 0, 0.05)'
+                        p: '10px 16px 20px 16px'
                     }}>
                     <DragHandleIcon sx={{ color: 'rgba(0, 0, 0, 0.19)', mr: '13px' }} />
                     <Typography sx={{ fontSize: '15px', lineHeight: '21px', fontWeight: '600', display: 'contents' }} component='h1' variant='h1'>
