@@ -1,5 +1,4 @@
 "use client"; // this is a client component 
-
 import { useState } from 'react';
 import * as React from 'react';
 import Button from '@mui/material/Button';
@@ -18,20 +17,20 @@ function CreateWorkplace() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  // States
+  // States . //// Workspace Name input
   const [workName, setWorkName] = useState('');
   const [workNameError, setWorkNameError] = useState('');
   const [workNameReady, setWorkNameReady] = useState(false);
-  // web URL
+  // web URL input
   const [webURL, setWebURL] = useState('');
   const [webURLError, setWebURLError] = useState('');
   const [webURLReady, setWebURLReady] = useState(false);
-  // Large Company
+  // Large Company select option. 
   const [companyLarge, setCompanyLarge] = useState('1-10employees');
-  // What is your role
+  // What is your role select option.
   const [yourRole, setYourRole] = useState('marketing-manager');
 
-  // control web site validation input
+  // control web site validation and regex input
   const handlechangeWebURL = (event) => {
     const inputValue = event.target.value;
     if (/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test(inputValue)) {
@@ -60,19 +59,19 @@ function CreateWorkplace() {
   const submitForm = (e) => {
     e.preventDefault();
 
+    // control form validation
     if (workNameReady === true && webURLReady === true) {
-      // success form
-      console.log(workName, webURL, companyLarge, yourRole, "success");
     } if (workNameReady === false) {
       setWorkNameError('Please enter your Workspace Name');
     } if (webURLReady === false) {
       setWebURLError('Please enter the URL of the webpage where you would like to display widgets on your website.');
-    }
-
+    } 
+    // success form
+    console.log(workName, webURL, companyLarge, yourRole, "success");
   };
 
   /**
-   * !! gerçek data işlendiğinde bu değerleri label ve value şekliden ayarlamak lazım.
+   * !! When the real data is processed, it is necessary to set these values in the form of label and value.
    */
   // employees large select options
   const employeesLarge = [
@@ -90,7 +89,7 @@ function CreateWorkplace() {
     }
   ];
 
-  //  your large slect option
+  //  your large select option
   const yourRolesArray = [
     {
       value: 'marketing-manager',

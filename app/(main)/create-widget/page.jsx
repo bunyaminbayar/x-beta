@@ -242,7 +242,7 @@ function CreateWidget() {
     return (
         <>
             {/** Alert area */}
-            {formsStatus === 'success' || formsStatus === 'success' ?
+            {formsStatus === 'success' || formsStatus === 'error' ?
                 <Alert_app formsStatus={formsStatus} />
                 :
                 null

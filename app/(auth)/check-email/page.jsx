@@ -16,11 +16,12 @@ function CheckEmail() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  // set states
+  // set states. //// Enter Code input.
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
   const [formReady, setFormReady] = useState(false);
 
+  // form validation and input regex
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     if (/^\d{6}$/.test(inputValue)) {
@@ -32,10 +33,12 @@ function CheckEmail() {
     }
   };
 
+  // submit form
   const submitForm = (e) => {
     e.preventDefault();
 
     if (formReady === true) {
+      // success
       console.log(value);
       setFormReady(false);
     } else {

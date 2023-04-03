@@ -12,7 +12,7 @@ import Divider from '@mui/material/Divider';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import InputAdornment from '@mui/material/InputAdornment';
-import IconButton from '@mui/material/iconButton';
+import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
@@ -25,65 +25,67 @@ function Register() {
   // Show or hide password with TextField icons
   const [showPassword, setShowPassword] = useState(false);
 
-  // for to show password
+  // for show password
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
-  // for to hide password
+  // for hide password
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
-  // states. Email and Password
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  // validations states Message
-  const [emailError, setEmailError] = useState('');
-  const [passError, setPassError] = useState('');
+  // states. Email
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  // validations Rulles
   // email should be inslude @ and "." dot
   const validateEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
   };
-  // password should be include; one sembol, one number, one capital letter and lower letter
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])(?=.*[a-zA-Z]).{8,}$/;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setEmailError('');
-    setPassError('');
-    // validate control
-    if (email.length < 1) {
-      setEmailError('Please enter a email !');
-      return;
-    } else if (!validateEmail(email)) {
-      setEmailError('Please enter a valid email address !');
-      return;
+  // password should be include; one sembol, one number, one capital letter and lower letter
+  function validatePassword(password) {
+    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])(?=.*[a-zA-Z]).{8,}$/;
+    return re.test(password);
+  }
+
+  // email handle function
+  function handleEmailChange(event) {
+    const newEmail = event.target.value;
+    setEmail(newEmail);
+
+    if (!validateEmail(newEmail)) {
+      setEmailError("Please enter a valid email !");
+    } else {
+      setEmailError("");
     }
-    // password
-    if (passError.length <= 8) {
-      setPassError('Password must be at least 8 characters!');
-      return;
-    } else if (!passwordRegex.test(password)) {
-      setPassError('Password must be at least 8 characters, contain at least one special symbol, contain at least one uppercase letter, contain at least one number, and contain at least one lowercase letter.');
-      return;
+  }
+
+  // password handle function
+  function handlePasswordChange(event) {
+    const newPassword = event.target.value;
+    setPassword(newPassword);
+
+    if (!validatePassword(newPassword)) {
+      setPasswordError(
+        "Password must be at least 8 characters, contain at least one special symbol, contain at least one uppercase letter, contain at least one number, and contain at least one lowercase letter !"
+      );
+    } else {
+      setPasswordError("");
     }
-    // form submit function
+  }
+
+  // form submit function
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    // Form submissions can be done here
     const data = { email, password };
     console.log(data);
-
-    /*
-    const response = await fetch('/api/register', { // örnek apı key
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    const result = await response.json();
-    console.log(result);  
-    */
-  };
+  }
 
   return (
     <>
@@ -121,7 +123,7 @@ function Register() {
                 size="small"
                 color="#525252"
                 variant="filled"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleEmailChange}
                 autoFocus
                 autoComplete="off"
               />
@@ -153,10 +155,10 @@ function Register() {
                 fontSize="14px"
                 color="#525252"
                 variant="filled"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
                 autoComplete="off"
               />
-              {passError && <Typography color="#eb2f06" fontSize="12px" lineHeight="12px" sx={{ margin: '0 0 10px 0' }}>{passError}</Typography>}
+              {passwordError && <Typography color="#eb2f06" fontSize="12px" lineHeight="12px" sx={{ margin: '0 0 10px 0' }}>{passwordError}</Typography>}
               <Grid container display="flex" alignItems="center">
                 <Grid item xs>
                   <Button

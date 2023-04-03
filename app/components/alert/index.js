@@ -8,6 +8,7 @@ import { Box } from '@mui/system';
 
 export default function Alert_app(props) {
 
+    // alert success or error
     const [alertVisible, setAlertVisible] = useState(false);
 
     const handleCloseAlert = () => {
