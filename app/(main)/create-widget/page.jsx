@@ -23,27 +23,27 @@ import Alert_app from '@/app/components/alert';
 function CreateWidget() {
 
     // Set States //
-    // widget name
+    // widget name input
     const [widgetName, setWidgetName] = useState('');
     const [widgetNameError, setWidgetError] = useState('');
     const [widgetNameReady, setWidgetNameReady] = useState(false);
-    // widget title
+    // widget title input
     const [widgetTitle, setwidgetTitle] = useState('');
     const [widgetTitleError, setwidgetTitleError] = useState('');
     const [widgetTitleReady, setWidgetTitleReady] = useState(false);
-    // cta text
+    // cta text input
     const [ctaText, setCtaText] = useState('');
     const [ctaTextError, setCtaTextError] = useState('');
     const [ctaTextReady, setCtaTextReady] = useState(false);
-    // Cta Link
+    // Cta Link input
     const [ctaLink, setCtaLink] = useState('');
     const [ctaLinkError, setCtaLinkError] = useState('');
     const [ctaLinkReady, setCtaLinkReady] = useState(false);
-    // Widget position
+    // Widget position select option
     const [widgetPosition, setwidgetPosition] = useState('Top Center');
     // widget body textarea
     const [widgetBody, setwidgetBody] = useState('');
-    // Switch add CTA
+    // Switch add CTA 
     const [mySwitchState, setMySwitchState] = useState(false);
     // Switch controller
     const [mySwitchCont, setmySwitchCont] = useState(false);

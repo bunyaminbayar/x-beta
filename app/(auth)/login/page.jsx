@@ -16,7 +16,7 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-function Register() {
+function Login() {
 
   // MUI Meida query rulles
   const theme = useTheme();
@@ -173,12 +173,12 @@ function Register() {
                     style={{ fontSize: '14px', lineHeight: '16px', paddingTop: '16px', paddingRight: '64px', paddingBottom: '16px', paddingLeft: '16px', marginTop: '16px', marginBottom: '16px', color: '#fff', borderRadius: 0, textTransform: 'inherit', background: '#0F62FE' }}
                     onClick={handleSubmit}
                   >
-                    Register
+                    Login
                   </Button>
                 </Grid>
                 <Grid item>
                   <Link href="login" sx={{ textDecoration: 'auto' }} fontSize="14px" variant="body2">
-                    {"Already Registered? Log in"}
+                    Register
                   </Link>
                 </Grid>
               </Grid>
@@ -193,4 +193,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;

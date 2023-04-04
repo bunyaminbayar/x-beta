@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/typography';
+import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import DragHandleIcon from '@mui/icons-material/DragHandle';
 import CircleIcon from '@mui/icons-material/Circle';

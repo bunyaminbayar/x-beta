@@ -10,6 +10,7 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import AddToHomeScreenIcon from '@mui/icons-material/AddToHomeScreen';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+/*
 import { makeStyles } from '@mui/styles';
 
 // To style the lines of code in pre.
@@ -34,16 +35,16 @@ const useStyles = makeStyles(() => ({
         },
     },
 }));
-
+*/
 function Home() {
 
     // MUI Meida query rulles
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
+/*
     // add style
     const classes = useStyles();
-
+*/
     // copy function.
     const handleCopyClick = () => {
         navigator.clipboard.writeText(`
@@ -87,19 +88,19 @@ function Home() {
                         <Typography sx={{ mb: '10px', mt: 3 }} component="p" variant="div" fontWeight="medium" fontSize={'14px'} lineHeight={'18px'} >
                             Paste this code into before <Typography color='#DA1E28' component="span" variant="span">&lt;/body&gt;</Typography>  of every page where you want to show widgets.
                         </Typography>
-                        <Typography position={'relative'} variant="body1" component="pre" className={classes.code}>
+                        <Typography position={'relative'} variant="body1" component="pre">
                             <Button variant="text" onClick={handleCopyClick} sx={{ right: '8px', top: '8px', color: '#161616', position: 'absolute', minWidth: 0, padding: '9px' }}>
                                 <svg height={'14px'} focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyIcon"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
                             </Button>
-                            <div className={classes.line}>{'<script type="text/javascript" src="https://x.com/lib/0.1.0/x.js"></script>'} </div>
-                            <div className={classes.line}>{'<script>'}</div>
-                            <div className={classes.line}>&nbsp;&nbsp;{'X.show({'}</div>
-                            <div className={classes.line}>&nbsp;&nbsp;&nbsp;&nbsp;{'app_id: "camjg6xz", // merchant id'}</div>
-                            <div className={classes.line}>&nbsp;&nbsp;&nbsp;&nbsp;{'onWidgetLoad: function () {'}</div>
-                            <div className={classes.line}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'console.log("Widget loaded");'}</div>
-                            <div className={classes.line}>&nbsp;&nbsp;&nbsp;&nbsp;{'}'}</div>
-                            <div className={classes.line}>&nbsp;&nbsp;{'});'}</div>
-                            <div className={classes.line}>{'</script>'}</div>
+                            <div >{'<script type="text/javascript" src="https://x.com/lib/0.1.0/x.js"></script>'} </div>
+                            <div >{'<script>'}</div>
+                            <div >&nbsp;&nbsp;{'X.show({'}</div>
+                            <div >&nbsp;&nbsp;&nbsp;&nbsp;{'app_id: "camjg6xz", // merchant id'}</div>
+                            <div >&nbsp;&nbsp;&nbsp;&nbsp;{'onWidgetLoad: function () {'}</div>
+                            <div >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'console.log("Widget loaded");'}</div>
+                            <div >&nbsp;&nbsp;&nbsp;&nbsp;{'}'}</div>
+                            <div >&nbsp;&nbsp;{'});'}</div>
+                            <div >{'</script>'}</div>
                         </Typography>
                         <Grid container display="flex" alignItems="center" mt={2} mb={1}>
                             <Grid item xs={12} sm={5} paddingBottom={isSmallScreen ? '16px' : '0px'}>
