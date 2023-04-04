@@ -1,5 +1,7 @@
 "use client"; // this is a client component 
 
+import { useRef, useEffect, useState } from 'react';
+import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
@@ -10,45 +12,33 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import AddToHomeScreenIcon from '@mui/icons-material/AddToHomeScreen';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-/*
-import { makeStyles } from '@mui/styles';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-// To style the lines of code in pre.
-const useStyles = makeStyles(() => ({
-    code: {
-        whiteSpace: 'pre-line',
-        lineHeight: 1.5,
-        counterReset: 'linenumber',
-        background: '#f4f4f4',
-        padding: '16px',
-        fontSize: '12px',
-        lineHeight: '16px'
-    },
-    line: {
-        counterIncrement: 'linenumber',
-        '&:before': {
-            content: 'counter(linenumber)',
-            marginRight: '16px',
-            color: '#161616',
-            display: 'inline-block',
-            textAlign: 'right',
-        },
-    },
-}));
-*/
 function Home() {
+
+    // states
+    const [showMore, setShowMore] = useState(false);
+    // show more code box
+    const handleShowMore = () => {
+        setShowMore(!showMore);
+    };
 
     // MUI Meida query rulles
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-/*
-    // add style
-    const classes = useStyles();
-*/
+
     // copy function.
     const handleCopyClick = () => {
         navigator.clipboard.writeText(`
 <script type="text/javascript" src="https://x.com/lib/0.1.0/x.js"></script>
+<script>
+    X.show({
+    app_id: "camjg6xz", // merchant id
+    onWidgetLoad: function () {
+        console.log("Widget loaded");
+    }
+    });
+</script>
 <script>
     X.show({
     app_id: "camjg6xz", // merchant id
@@ -88,19 +78,34 @@ function Home() {
                         <Typography sx={{ mb: '10px', mt: 3 }} component="p" variant="div" fontWeight="medium" fontSize={'14px'} lineHeight={'18px'} >
                             Paste this code into before <Typography color='#DA1E28' component="span" variant="span">&lt;/body&gt;</Typography>  of every page where you want to show widgets.
                         </Typography>
-                        <Typography position={'relative'} variant="body1" component="pre">
-                            <Button variant="text" onClick={handleCopyClick} sx={{ right: '8px', top: '8px', color: '#161616', position: 'absolute', minWidth: 0, padding: '9px' }}>
+                        <Typography className='codeBox' style={{
+                            maxHeight: showMore ? 'none' : '182px',
+                            overflow: 'hidden',
+                            transition: 'max-height 0.5s ease-in-out',
+                        }} position={'relative'} component="pre">
+                            <Button variant="outlined" onClick={handleCopyClick} sx={{ background: '#eee !important', borderColor: 'transparent', right: '8px', top: '8px', color: '#161616', position: 'absolute', minWidth: 0, padding: '9px', '&:hover': { borderColor: '#bbb' } }}>
                                 <svg height={'14px'} focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyIcon"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
                             </Button>
-                            <div >{'<script type="text/javascript" src="https://x.com/lib/0.1.0/x.js"></script>'} </div>
-                            <div >{'<script>'}</div>
-                            <div >&nbsp;&nbsp;{'X.show({'}</div>
-                            <div >&nbsp;&nbsp;&nbsp;&nbsp;{'app_id: "camjg6xz", // merchant id'}</div>
-                            <div >&nbsp;&nbsp;&nbsp;&nbsp;{'onWidgetLoad: function () {'}</div>
-                            <div >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'console.log("Widget loaded");'}</div>
-                            <div >&nbsp;&nbsp;&nbsp;&nbsp;{'}'}</div>
-                            <div >&nbsp;&nbsp;{'});'}</div>
-                            <div >{'</script>'}</div>
+                            <div>{'<script type="text/javascript" src="https://x.com/lib/0.1.0/x.js"></script>'} </div>
+                            <div>{'<script>'}</div>
+                            <div>&nbsp;&nbsp;{'X.show({'}</div>
+                            <div>&nbsp;&nbsp;&nbsp;&nbsp;{'app_id: "camjg6xz", // merchant id'}</div>
+                            <div>&nbsp;&nbsp;&nbsp;&nbsp;{'onWidgetLoad: function () {'}</div>
+                            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'console.log("Widget loaded");'}</div>
+                            <div>&nbsp;&nbsp;&nbsp;&nbsp;{'}'}</div>
+                            <div>&nbsp;&nbsp;{'});'}</div>
+                            <div>{'</script>'}</div>
+                            <div>{'<script>'}</div>
+                            <div>&nbsp;&nbsp;{'X.show({'}</div>
+                            <div>&nbsp;&nbsp;&nbsp;&nbsp;{'app_id: "camjg6xz", // merchant id'}</div>
+                            <div>&nbsp;&nbsp;&nbsp;&nbsp;{'onWidgetLoad: function () {'}</div>
+                            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'console.log("Widget loaded");'}</div>
+                            <div>&nbsp;&nbsp;&nbsp;&nbsp;{'}'}</div>
+                            <div>&nbsp;&nbsp;{'});'}</div>
+                            <div>{'</script>'}</div>
+                            <Button onClick={handleShowMore} sx={{ fontSize: '14px', fontWeight: 400, position: 'absolute', right: 0, bottom: 0, lineHeight: '18px', padding: '11px 16px 11px 16px', color: '#161616', textTransform: 'inherit', background: '#fff' }} endIcon={<KeyboardArrowDownIcon className={!showMore ? "transformDown" : "transformUp"} sx={{ fontSize: '14px', fontWeight: 400 }} />}>
+                            {!showMore ? "Show more" : "Show less"} 
+                            </Button>
                         </Typography>
                         <Grid container display="flex" alignItems="center" mt={2} mb={1}>
                             <Grid item xs={12} sm={5} paddingBottom={isSmallScreen ? '16px' : '0px'}>

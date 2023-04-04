@@ -243,7 +243,7 @@ function CreateWidget() {
         <>
             {/** Alert area */}
             {formsStatus === 'success' || formsStatus === 'error' ?
-                <Alert_app formsStatus={formsStatus} />
+                <Alert_app alertMsg={formsStatus ? "Widget created successfully" : "Failed to create widget. please try again later !"} formsStatus={formsStatus} />
                 :
                 null
             }
@@ -309,7 +309,6 @@ function CreateWidget() {
                                                     <TextField
                                                         className='openEmojiModal'
                                                         id="filled-select-currency"
-                                                        disabled={mySwitchState}
                                                         fullWidth
                                                         variant="filled"
                                                         size='small'

@@ -37,11 +37,11 @@ export default function Alert_app(props) {
                 <Box className='absolute w-full text-center' sx={{ top: '24px' }}>
                     {props.formsStatus === 'success' ?
                         <Alert className='m-auto' color="info" icon={<CheckCircleIcon sx={{ color: '#198038', fontSize: '18px', mr: '4px' }} />} sx={{ fontSize: '14px', lineHeight: '18px', width: 'fit-content', fontWeight: 600, color: '#161616', background: '#DEFBE6', borderBottom: '1px solid #A6E0B7', borderLeft: '3px solid #198038', borderRadius: 0, }}>
-                            Widget created successfully
+                            {props.alertMsg}
                         </Alert>
                         :
                         <Alert className='m-auto' color="info" icon={<ErrorIcon sx={{ color: '#D32F2F', fontSize: '18px', mr: '4px' }} />} sx={{ fontSize: '14px', lineHeight: '18px', width: 'fit-content', fontWeight: 600, color: '#161616', background: '#ffebeb', borderBottom: '1px solid #ff8989', borderLeft: '3px solid #D32F2F', borderRadius: 0, }}>
-                            Failed to create widget. please try again later !
+                            {props.alertMsg}
                         </Alert>
                     }
                 </Box>

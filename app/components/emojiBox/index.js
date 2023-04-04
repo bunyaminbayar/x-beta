@@ -8,7 +8,9 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import data from '@emoji-mart/data';
-import Picker from '@emoji-mart/react'
+import Picker from '@emoji-mart/react';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 function TabPanel(props) {
@@ -81,13 +83,25 @@ export default function BasicTabs(props) {
         props.setEmojiState(selectedEmoji.native);
         props.setIsSvgType(false);
     }
+        // MUI Meida query rulles
+        const theme = useTheme();
+        const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
         <Box className='absolute bg-white emojiBox'
-            sx={{
-                minWidth: '390px',
-                maxWidth: '390px',
-                top: '53px',
+        minWidth={isSmallScreen ? '250px' : '370px'}
+        maxWidth="calc(100vw - 14px)"
+            sx={isSmallScreen ?  {
+                top: '43px',
+                left: '-30px',
+                '--Grid-borderWidth': '1px',
+                border: 'var(--Grid-borderWidth) solid',
+                borderColor: 'divider',
+                borderRadius: '8px',
+                boxShadow: '0px 4px 7px rgba(0, 0, 0, 0.05)'
+               
+            } : {
+                 top: '53px',
                 '--Grid-borderWidth': '1px',
                 border: 'var(--Grid-borderWidth) solid',
                 borderColor: 'divider',
@@ -108,7 +122,13 @@ export default function BasicTabs(props) {
                         <input hidden accept=".svg" type="file" onChange={handleFileSelect} />
                     </Button>
                 </Box> :
-                <Box p="18px 7px" className='react-input-emoji--button' value={value} index={1}>
+                <Box             sx={isSmallScreen ?  {
+                    width: '100%',
+                    p: '0',
+                   overflow: 'auto'
+                } : {
+                    p:"18px 7px",
+                     top: '53px'}} className='react-input-emoji--button' value={value} index={1}>
                     <Picker data={data} onEmojiSelect={handleSelectEmoji} />
                 </Box>
             }

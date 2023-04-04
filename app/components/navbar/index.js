@@ -80,6 +80,7 @@ export default function MenuAppBar(props) {
               <MenuItem fontSize="14px" sx={{ paddingLeft: '17px !important', display: 'block !important', minWidth: '185px', textAlign: 'left', lineHeight: '14px' }} onClick={handleCloseLink}><Link href="list-widget">List Widget</Link></MenuItem>
               {/**  */}
               <Link href="register">Register </Link>
+              <Link href="login">Login </Link>
               <Link href="check-email"> Check-email</Link>
             </Menu>
             <Typography variant="p" fontSize="14px" component="div" sx={{ flexGrow: 1 }}>
