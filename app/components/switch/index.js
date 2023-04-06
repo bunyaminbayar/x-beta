@@ -85,14 +85,14 @@ function MUISwitch(props) {
     };
 
     return (
-        <diV className='addCtaSwitch'>
+        <div className='addCtaSwitch'>
             <SwitchRoot className={clsx(stateClasses)}>
                 <SwitchTrack>
                     <SwitchThumb className={clsx(stateClasses)} />
                 </SwitchTrack>
                 <SwitchInput {...getInputProps()} />
             </SwitchRoot>
-        </diV>
+        </div>
     );
 }
 export default MUISwitch;

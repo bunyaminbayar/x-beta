@@ -53,9 +53,9 @@ export default function NewWidget(props) {
                     <Divider />
                 </Box>
                 <Box display={props.iconText ? 'none' : 'block'} padding="14px" minHeight={'30px'}>
-                    <Typography fontWeight='400' color="#212529" fontSize="14px" lineHeight="21px">
-                        {props.widgetBody}
-                    </Typography>
+                    <Box fontWeight='400' color="#212529" fontSize="14px" lineHeight="21px">
+                        <div dangerouslySetInnerHTML={{__html: props.widgetBody}} />
+                    </Box>
                     <Link width="fit-content" display={props.mySwitchState ? 'none' : 'block'} sx={{ '&:hover': { textDecoration: 'none' } }} href={props.ctaLink}>
                         <Button sx={{ mt: 2, fontSize: '13px', lineHeight: '21px', background: '#0F63FE !important', minHeight: '28px', fontWeight: 600, p: '4px 8px', '&:hover': { background: '#2f78ff' } }} variant="contained">
                             {props.ctaText}

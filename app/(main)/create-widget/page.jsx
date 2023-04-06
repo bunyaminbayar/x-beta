@@ -18,7 +18,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MUISwitch from './../../components/switch';
 import EmojiBox from '@/app/components/emojiBox';
 import Alert_app from '@/app/components/alert';
+import dynamic from 'next/dynamic';
+import 'draft-js/dist/Draft.css';
+import { EditorState } from 'draft-js';
 
+const RichTextEditor = dynamic(() => import('@/app/components/richField/RichEditor'), { ssr: false });
 
 function CreateWidget() {
 
@@ -43,6 +47,8 @@ function CreateWidget() {
     const [widgetPosition, setwidgetPosition] = useState('Top Center');
     // widget body textarea
     const [widgetBody, setwidgetBody] = useState('');
+    const [widgetBodyError, setWidgetBodyError] = useState('');
+    const [widgetBodyReady, setWidgetBodyReady] = useState(false);
     // Switch add CTA 
     const [mySwitchState, setMySwitchState] = useState(false);
     // Switch controller
@@ -57,6 +63,12 @@ function CreateWidget() {
     const [isSvgType, setIsSvgType] = useState('false');
     // Form save Status  
     const [formsStatus, setFormsStatus] = useState('default');
+    // Rich text area
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+    const handleEditorChange = (editorState) => {
+        setEditorState(editorState);
+    };
 
     // widget name input validation
     const handleChangeWidgetName = (event) => {
@@ -146,6 +158,7 @@ function CreateWidget() {
             setCtaLinkReady(false);
             setCtaTextReady(false);
             setWidgetTitleReady(false);
+            setWidgetBodyReady(false);
         }
     };
 
@@ -165,6 +178,8 @@ function CreateWidget() {
             setCtaTextError('');
             setwidgetTitleError('');
             setWidgetTitleReady(true);
+            setWidgetBodyError('');
+            setWidgetBodyReady(true);
         }
     };
 
@@ -174,6 +189,8 @@ function CreateWidget() {
             setWidgetError('Please enter Widget Name');
         } if (widgetTitleReady === false) {
             setwidgetTitleError('Please enter Title');
+        } if (widgetBodyReady === false) {
+            setWidgetBodyError('Please enter Body');
         } if (ctaTextReady === false) {
             setCtaTextError('Please enter CTA Text');
         } if (ctaLinkReady === false) {
@@ -184,7 +201,7 @@ function CreateWidget() {
         }
 
         // control form
-        if (widgetNameReady === true && widgetTitleReady == true && ctaTextReady === true && ctaLinkReady === true && emojiReady === true) {
+        if (widgetNameReady === true && widgetTitleReady == true && ctaTextReady === true && ctaLinkReady === true && emojiReady === true && widgetBodyReady === true) {
             // success form
             var data = { "widgetName": widgetName, "widgetTitle": widgetTitle, "ctaText": ctaText, "ctaLink": ctaLink, "widgetPosition": widgetPosition, "widgetBody": widgetBody, "emoji": emoji };
             if (mySwitchState === true) {
@@ -195,6 +212,8 @@ function CreateWidget() {
                 // only Icon
                 data = { "widgetName": widgetName, "emoji": emoji };
             }
+            //
+            setWidgetBodyError('');
             const jsonData = JSON.stringify(data);
             console.log(jsonData);
 
@@ -272,7 +291,7 @@ function CreateWidget() {
                                 <Typography sx={{ mb: 3 }} component="h1" variant="h5" fontWeight="medium" fontSize={'18px'} lineHeight={'21px'}>
                                     Create Widget
                                 </Typography>
-                                <Box className='createWidgetFrom' component="form" onSubmit={submitForm} noValidate>
+                                <Box className='createWidgetFrom'>
                                     <Typography color="#525252" fontSize="12px" lineHeight="16px" sx={{ mt: 4, mb: 1 }}>
                                         Widget Name
                                     </Typography>
@@ -348,18 +367,9 @@ function CreateWidget() {
                                         <Typography color={iconText ? '#C6C6C6' : '#525252'} fontSize="12px" lineHeight="16px" sx={{ mb: 1, mt: 2 }}>
                                             Body
                                         </Typography>
-                                        <TextField
-                                            fullWidth
-                                            disabled={iconText}
-                                            className='createWidgetTextArea'
-                                            id="outlined-multiline-static"
-                                            onChange={(event) => setwidgetBody(event.target.value)}
-                                            multiline
-                                            rows={3}
-                                            placeholder="Text"
-                                            variant="filled"
-                                            sx={{ resize: 'both', overflowY: 'auto', overflowX: 'hidden', maxWidth: '100%' }}
-                                        />
+                                        {/** Rich text field */}
+                                        <RichTextEditor setwidgetBody={setwidgetBody} setWidgetBodyReady={setWidgetBodyReady} editorState={editorState} onChange={handleEditorChange} />
+                                        {widgetBodyError && <Typography color="#eb2f06" fontSize="12px" lineHeight="12px" sx={{ margin: '0 0 10px 0' }}>{widgetBodyError}</Typography>}
                                         <Typography color={iconText ? '#C6C6C6' : '#525252'} fontSize="12px" lineHeight="16px" sx={{ mb: 1, mt: 2 }}>
                                             Add CTA button
                                         </Typography>
@@ -426,6 +436,7 @@ function CreateWidget() {
                                     </Box>
                                     <Button
                                         type="submit"
+                                        onClick={submitForm}
                                         size="large"
                                         variant="contained"
                                         fontWeight="medium"

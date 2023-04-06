@@ -236,3 +236,18 @@ body {
     transition: transform 0.5s ease-in-out;
     transform: rotate(180deg);
 }
+
+.RichEditor-root {
+    border: none;
+    background: #f0f0f0 !important;
+    padding: 10px 16px;
+    border-bottom: 1px solid #b3b3b3 !important;
+    font-size: 14px;
+    position: relative;
+}
+
+.RichEditor-root .RichEditor-controls:first-child span:first-child {
+    position: absolute;
+    right: 0;
+    margin-top: 6px;
+}
