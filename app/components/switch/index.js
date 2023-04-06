@@ -65,7 +65,7 @@ const SwitchThumb = styled('span')`
     }
   }
 `;
-
+// switch Track
 const SwitchTrack = styled('span')(
     ({ theme }) => `
   width: 100%;
