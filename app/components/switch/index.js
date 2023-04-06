@@ -66,6 +66,7 @@ const SwitchThumb = styled('span')`
   }
 `;
 // switch Track
+// branch 2 için güncel
 const SwitchTrack = styled('span')(
     ({ theme }) => `
   width: 100%;
