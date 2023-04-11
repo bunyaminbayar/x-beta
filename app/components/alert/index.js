@@ -34,7 +34,7 @@ export default function Alert_app(props) {
     return (
         <>
             <Slide direction="down" in={alertVisible} unmountOnExit>
-                <Box className='absolute w-full text-center' sx={{ top: '24px' }}>
+                <Box className='absolute w-full text-center' sx={{ top: '24px', zIndex: '99', left: 0 }}>
                     {props.formsStatus === 'success' ?
                         <Alert className='m-auto' color="info" icon={<CheckCircleIcon sx={{ color: '#198038', fontSize: '18px', mr: '4px' }} />} sx={{ fontSize: '14px', lineHeight: '18px', width: 'fit-content', fontWeight: 600, color: '#161616', background: '#DEFBE6', borderBottom: '1px solid #A6E0B7', borderLeft: '3px solid #198038', borderRadius: 0, }}>
                             {props.alertMsg}

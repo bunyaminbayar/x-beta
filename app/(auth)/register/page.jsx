@@ -115,7 +115,7 @@ function Register() {
               </Typography>
             </Box>
             <Divider sx={{ margin: '25px 0 32px 0' }} />
-            <Box className='registerForm' component="form" noValidate sx={{ mt: 1 }}>
+            <Box className='registerForm' noValidate sx={{ mt: 1 }}>
               <Typography color="#525252" fontSize="12px" lineHeight="12px">
                 Email address
               </Typography>

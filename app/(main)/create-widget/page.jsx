@@ -266,7 +266,7 @@ function CreateWidget() {
                 :
                 null
             }
-            <Box padding={isSmallScreen ? '20px 10px 20px 10px' : '20px 56px 20px 56px'}>
+            <Box className="p-5 sm:p-0 sm:pt-6 sm:pb-6">
                 <Breadcrumbs maxItems={4} aria-label="breadcrumb" fontSize={'14px'} lineHeight={'18px'}>
                     <Link underline="hover" href="#" color={'#0F62FE'}>
                         ACME LTD
